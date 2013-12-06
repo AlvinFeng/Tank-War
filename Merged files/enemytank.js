@@ -86,5 +86,5 @@ EnemyTank = Class.create(Tank, {
 });
 	
 function random(num){
-    return Math.floor(Math.random()*num);   
+    return Math.floor(Math.random()*num) + 1;   
 }
