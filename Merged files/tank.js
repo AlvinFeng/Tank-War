@@ -89,6 +89,18 @@ Tank = enchant.Class.create(enchant.Group,
 
                 return [coordX, coordY];
             }
+
+            this.scale = function (x, y) 
+            {
+                this.chassis.scale(x,y);
+                this.turret.scale(x,y);
+            }
+
+            this.rotateWholeTank = function (rotate) 
+            {
+                this.chassis.rotate(rotate);
+                this.turret.rotate(rotate);
+            }
         },
         onenterframe: function() {  
         }

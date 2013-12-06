@@ -79,8 +79,10 @@ window.onload = function() {
 
             world = new World(0,'cyan','red');
             var tank = new PlayerTank(100,100,'blue','blue',world);
-            tank.rotate(90);
-            //tank.scale(10, 10);
+            tank.rotateWholeTank(90);
+            tank.scale(5, 5);
+            tank.x = 325;
+            tank.y = 200;
             this.addChild(tank);
 
             var titleBG = new Sprite(236, 48);
