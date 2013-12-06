@@ -12,7 +12,7 @@ window.onload = function() {
     game.keybind(68, 'right');
     game.keybind(87, 'up');
     game.keybind(83, 'down');
-       
+     
     //load images
     game.preload('images/bluetiles.png',
                     'images/cyantiles.png',
@@ -58,14 +58,11 @@ window.onload = function() {
             var tank = new PlayerTank(100,100,'blue','blue',world);
             this.addChild(tank);
 
-            var tank1 = new Tank(300,100,'violet','violet',world);
+            var tank1 = new EnemyTank(300,100,'violet','violet',world);
             this.addChild(tank1);
 
-            var tank2 = new Tank(500,100,'red','red',world);
+            var tank2 = new EnemyTank(500,100,'red','red',world);
             this.addChild(tank2);
-
-            var tank3 = new Tank(100,300,'white','white',world);
-            this.addChild(tank3);
         }
     });
 

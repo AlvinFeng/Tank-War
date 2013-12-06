@@ -58,6 +58,15 @@ Tank = enchant.Class.create(enchant.Group,
                 }
             }
 
+            // maybe this rotation should be linked to the chassis turret
+            this.rotateTurret = function(value)
+            {
+                if ((this.turret.rotation >= 360)||(this.turret.rotation <= 0)) {
+                    this.turret.rotation = this.turret.rotation%360;
+                }
+                this.turret.rotation+=value;
+            }
+
             this.move = function(value)
             {
                 var nextx = this.x + value * Math.cos((Math.PI * (this.chassis.rotation-90))/180); 
