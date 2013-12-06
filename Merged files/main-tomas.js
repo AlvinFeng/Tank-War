@@ -33,7 +33,8 @@ window.onload = function() {
                     'images/whitetank.png',
                     'images/yellowtank.png',
                     'images/start.png',
-                    'images/blackBG.png');
+                    'images/blackBG.png',
+                    'sounds/select.wav');
 
     //called when the loading is complete
     game.onload = function() {       
@@ -92,6 +93,7 @@ window.onload = function() {
             this.addChild(titleBG);
         },
         ontouchend: function () {
+            game.assets["sounds/select.wav"].play();
             game.popScene();
         }
     });
