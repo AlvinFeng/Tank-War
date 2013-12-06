@@ -43,16 +43,16 @@ window.onload = function() {
 
                 this.x+=this.vx;
 
-        var tank = new PlayerTank(100,100,'blue','blue');
+        var tank = new PlayerTank(100,100,'blue','blue',world);
         this.rootScene.addChild(tank);
 
-        var tank1 = new Tank(300,100,'violet','violet');
+        var tank1 = new Tank(300,100,'violet','violet',world);
         this.rootScene.addChild(tank1);
 
-        var tank2 = new Tank(500,100,'red','red');
+        var tank2 = new Tank(500,100,'red','red',world);
         this.rootScene.addChild(tank2);
 
-        var tank3 = new Tank(100,300,'white','white');
+        var tank3 = new Tank(100,300,'white','white',world);
         this.rootScene.addChild(tank3);
     };
 

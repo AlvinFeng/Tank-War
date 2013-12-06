@@ -1,7 +1,7 @@
 PlayerTank = Class.create(Tank,
     {
-        initialize: function(x, y, chassiscolor, turretcolor) { //initialization
-            Tank.call(this, x, y, chassiscolor, turretcolor);
+        initialize: function(x, y, chassiscolor, turretcolor, world) { //initialization
+            Tank.call(this, x, y, chassiscolor, turretcolor, world);
             //game.assets["./assets/sounds/explosion.ogg"].play();
         },
         onenterframe: function() {  
