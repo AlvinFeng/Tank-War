@@ -11,10 +11,24 @@ Tank = enchant.Class.create(enchant.Group,
             this.turret = new Sprite(64,64);
             this.turret.image = game.assets['images/' + turretcolor + 'tank.png'];
             this.turret.frame = 1;
-            this.addChild(this.turret);
+            this.addChild(this.turret); 
 
             this.x = x;
             this.y = y;
+
+            this.rotate = function(value)
+            {
+                if ((this.chassis.rotation >= 360)||(this.chassis.rotation <= 0)) {
+                    this.chassis.rotation = this.chassis.rotation%360;
+                }
+                this.chassis.rotation+=value;
+            }
+
+            this.move = function(value)
+            {
+                this.x += value * Math.cos((Math.PI * (this.chassis.rotation-90))/180);
+                this.y += value * Math.sin((Math.PI * (this.chassis.rotation-90))/180); 
+            }
         },
         onenterframe: function() {  
         }
