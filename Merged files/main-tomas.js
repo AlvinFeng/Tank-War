@@ -2,7 +2,6 @@ enchant();
 
 var game;
 
-
 window.onload = function() {
 
     //create game object
@@ -13,10 +12,7 @@ window.onload = function() {
     game.keybind(68, 'right');
     game.keybind(87, 'up');
     game.keybind(83, 'down');
-
-    // change the game dimensions when the window dimensions change
        
-
     //load images
     game.preload('images/bluetiles.png',
                     'images/cyantiles.png',
@@ -47,41 +43,6 @@ window.onload = function() {
 
                 this.x+=this.vx;
 
-
-        // s = new Sprite(32, 32);
-        // s.image = game.assets['images/bluetiles.png'];
-        // s.frame = 0;
-        // s.x = 100;
-        // s.y = 100;
-
-        // s.addEventListener(Event.ENTER_FRAME, function(){
-        //     var nextx = this.x; 
-        //     var nexty = this.y;
-
-        //     if(game.input.left && !game.input.right){
-        //         nextx = this.x - 4;
-        //     }
-        //     else if(game.input.right && !game.input.left){
-        //         nextx = this.x + 4;
-        //     }
-        //     if(game.input.up && !game.input.down){
-        //         nexty = this.y - 4;
-        //     }
-        //     else if(game.input.down && !game.input.up){
-        //         nexty = this.y + 4;
-        //     }
-
-        //     var aux = world.checkCollision(this.x,this.y,nextx,nexty);
-
-        //     console.log("return: " + aux[0] + " " + aux[1] + " " + aux[2]);
-        //     console.log("values: " + this.x + " " + this.y + " " + nextx + " " + nexty);
-        //     this.x = aux[1];
-        //     this.y = aux[2];
-
-        // });
-
-        // game.rootScene.addChild(s);
-
         var tank = new PlayerTank(100,100,'blue','blue');
         this.rootScene.addChild(tank);
 
@@ -93,15 +54,6 @@ window.onload = function() {
 
         var tank3 = new Tank(100,300,'white','white');
         this.rootScene.addChild(tank3);
-
-
-        //window.onresize = function(event) {
-        //    game.width = window.innerWidth;
-        //    game.height = window.innerHeight;
-        //    game.rootScene.removeChild(world);
-        //    game.rootScene.addChild(world);
-
-        //}
     };
 
     //start game
