@@ -83,23 +83,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         
     },
     onenterframe : function () {
-        
-
-        var tanks = this.currentScene.tanks;
-        for(var i in tanks) {
-            //console.log("Bullet (x,y)  tank (x, y) " + this.x, + " " + this.y + " (" + tanks[i].x + " " + tanks[i].y + ")");
-            if(this.intersect(tanks[i])) {
-                console.log("firing");
-                if(tanks[i] != player) {
-                    console.log("hitting!");
-                    tanks[i].die();
-                    tanks[i].remove();
-
-                    tanks.splice(i, 1);
-                    this.remove();
-                }
-            }
-        }
+        var tanks = this.currentScene.tanks;        
 
         if (this.x >  768 || this.y > 640) {
             this.currentScene.removeChild(this);
@@ -109,6 +93,15 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         }
         this.x += this.x_velocity * this.speed;
         this.y += this.y_velocity * this.speed;
+        for(var i in tanks) {
+            if(this.within(tanks[i], 20)) {
+                tanks[i].die();
+                tanks[i].remove();
+                tanks.splice(i, 1);
+                this.remove();
+                
+            }
+        }
     }
 
 });

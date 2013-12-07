@@ -59,16 +59,23 @@ window.onload = function() {
 
                     this.x+=this.vx;
 
+            this.tanks = [];
+            this.tanks[0] = new EnemyTank(300,100,'violet','violet',world, this);
+            this.addChild(this.tanks[0]);
+
+            this.tanks[1] = new EnemyTank(500,100,'red','red',world, this);
+            this.addChild(this.tanks[1]);            
+
             var tank = new PlayerTank(100,100,'blue','blue',world);
             this.addChild(tank);
 
-            var tank1 = new EnemyTank(300,100,'violet','violet',world);
-            this.addChild(tank1);
+            //var tank1 = new EnemyTank(300,100,'violet','violet',world);
+            //this.addChild(tank1);
 
-            var tank2 = new EnemyTank(500,100,'red','red',world);
-            this.addChild(tank2);
+            //var tank2 = new EnemyTank(500,100,'red','red',world);
+            //this.addChild(tank2);
 
-            this.tanks = [tank1, tank2];
+            //this.tanks = [tank1, tank2];
 			
 			//var hpup= new powerup(400,100,1,world);
 			//this.addChild(hpup);

@@ -17,6 +17,8 @@ Tank = enchant.Class.create(enchant.Group,
 
             this.x = x;
             this.y = y;
+            this.width = this.chassis.width;
+            this.height = this.chassis.height;
 
             this.collisionPointsOffsetX=[19, 44, 19, 44];
             this.collisionPointsOffsetY=[13, 13, 50, 50];

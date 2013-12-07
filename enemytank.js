@@ -9,7 +9,7 @@ EnemyTank = Class.create(Tank, {
 		//movespeed
 
 		this.die = function() {
-			currentScene.removeChild(this);
+			this.currentScene.removeChild(this);
 		}
 	},
 
