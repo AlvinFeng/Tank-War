@@ -81,7 +81,7 @@ window.onload = function() {
 			//this.addChild(hpup);
 
             this.addEventListener('touchend', function (e) {
-                var b = new Bullet(tank.x,e.x,tank.y,e.y,10,10, world, game.currentScene);
+                var b = new Bullet(tank.x + 20,e.x,tank.y + 25,e.y,10,10, world, game.currentScene);
                 this.addChild(b);
             });
         }
