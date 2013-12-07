@@ -36,6 +36,7 @@ window.onload = function() {
                     'images/blackBG.png',
                     'images/greybullet.png',
                     'images/redbullet.png',
+					'images/powerup.png',
                     'images/yellowbullet.png',
                     'sounds/select.wav');
 
@@ -66,6 +67,9 @@ window.onload = function() {
 
             var tank2 = new EnemyTank(500,100,'red','red',world);
             this.addChild(tank2);
+			
+			//var hpup= new powerup(400,100,1,world);
+			//this.addChild(hpup);
 
             this.addEventListener('touchend', function (e) {
                 var b = new Bullet(tank.x,e.x,tank.y,e.y,10,10,tank.chassisColor,world);
@@ -102,6 +106,8 @@ window.onload = function() {
             game.popScene();
         }
     });
+	
+	
 
     //start game
     game.start();

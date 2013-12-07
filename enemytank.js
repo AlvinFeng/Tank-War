@@ -3,10 +3,10 @@ EnemyTank = Class.create(Tank, {
         Tank.call(this, x, y, chassisColor, turretColor,world);
 		//ai turns
 		this.mode=0;
-		this.turretMode=0;			
+		this.turretMode=0;
+		this.movement=2;		
 
 		//movespeed
-		this.moveSpeed=2;
 	},
 	
 	onenterframe:function(){
@@ -38,7 +38,7 @@ EnemyTank = Class.create(Tank, {
 				break;
 			//move foward
 			case 3:
-				this.move(2);
+				this.move(this.movement);
 				this.delay--;
 				if(this.delay<=0)
 				{
@@ -47,7 +47,7 @@ EnemyTank = Class.create(Tank, {
 				break;
 			//move backwards
 			case 4:
-				this.move(-2);
+				this.move(-this.movement);
 				this.delay--;
 				if(this.delay<=0)
 				{

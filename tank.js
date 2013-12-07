@@ -1,4 +1,4 @@
-Tank = enchant.Class.create(enchant.Group,
+Tank = enchant.Class.create(enchant.Group, 
     {
         initialize: function(x, y, chassiscolor, turretcolor, world) { //initialization
             enchant.Group.call(this); //initialization of the Group object
