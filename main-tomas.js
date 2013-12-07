@@ -67,12 +67,14 @@ window.onload = function() {
 
             var tank2 = new EnemyTank(500,100,'red','red',world);
             this.addChild(tank2);
+
+            this.tanks = [tank1, tank2];
 			
 			//var hpup= new powerup(400,100,1,world);
 			//this.addChild(hpup);
 
             this.addEventListener('touchend', function (e) {
-                var b = new Bullet(tank.x,e.x,tank.y,e.y,10,10,tank.chassisColor,world);
+                var b = new Bullet(tank.x,e.x,tank.y,e.y,10,10, world, game.currentScene);
                 this.addChild(b);
             });
         }

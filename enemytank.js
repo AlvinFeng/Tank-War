@@ -1,13 +1,19 @@
 EnemyTank = Class.create(Tank, {
-	initialize: function(x,y,chassisColor,turretColor,world) {
+	initialize: function(x,y,chassisColor,turretColor,world, scene) {
         Tank.call(this, x, y, chassisColor, turretColor,world);
 		//ai turns
 		this.mode=0;
 		this.turretMode=0;
 		this.movement=2;		
-
+		this.currentScene = scene;
 		//movespeed
+
+		this.die = function() {
+			currentScene.removeChild(this);
+		}
 	},
+
+	
 	
 	onenterframe:function(){
 		switch(this.mode)
