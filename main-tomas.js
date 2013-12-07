@@ -34,12 +34,31 @@ window.onload = function() {
                     'images/redbullet.png',
 					'images/powerup.png',
                     'images/yellowbullet.png',
-                    'sounds/select.wav');
+                    'sounds/select.wav',
+                    'images/blacksquare.png');
 
     game.onload = function() {
         game.pushScene(new Level1Scene());
         game.pushScene(new TitleScene());        
     };
+
+    var Wall = enchant.Class.create(enchant.Sprite, {
+        initialize: function(x, y, destructible) {
+            enchant.Sprite.call(this, 64, 64);
+            this.image = game.assets['images/blacksquare.png']
+            this.frame = 3;
+            this.x = x;
+            this.y = y;
+            this.destructible = destructible;
+            this.opacity = 0;
+            game.rootScene.addChild(this);
+        },
+
+        remove: function() {
+            game.rootScene.removeChild(this);
+            delete this;
+        }
+    });
 
     Level1Scene = Class.create(Scene, 
     {
@@ -51,7 +70,18 @@ window.onload = function() {
 
             game.rootScene.backgroundColor='black';
 
-                    this.x+=this.vx;
+            this.x+=this.vx;
+
+            this.walls = new Array();
+            for (var i = 0; i < levels[0].length;i++) {
+                for (var j= 0; j < levels[0][i].length; j++){
+                    var destruct = false;
+                    if (levels[0][i][j] == 2)
+                        destruct = true;
+                    if (levels[0][i][j] == 1 || levels[0][i][j] == 2)
+                        this.walls.push(new Wall((j + 1) * 64, (i + 1) * 64, destruct));          
+                }        
+            }
 
             this.tanks = [];
             this.tanks[0] = new EnemyTank(300,100,'violet','violet',world, this);
@@ -102,7 +132,16 @@ window.onload = function() {
         }
     });
 	
-	
+	/*
+walls = new Array();
+for(var i = 0; i < this.height / 16; i++) {
+            walls.push(new Wall(0, i * 16, false));
+            walls.push(new Wall(this.height - 16, i * 16, false));
+            walls.push(new Wall(i * 16, 0, false));
+            walls.push(new Wall(i * 16, this.height - 16, false));
+        }
+
+*/
 
     //start game
     game.start();

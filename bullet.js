@@ -10,6 +10,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         this.frame = 3;
         this.world = world;
         this.currentScene = scene;
+        this.walls = this.currentScene.walls;
 
         x_delta = endx - startx;
         y_delta = endy - starty;
@@ -17,70 +18,6 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 
         this.x_velocity = x_delta / total;
         this.y_velocity = y_delta / total;
-
-        /*this.addEventListener('enterframe', function() {
-            this.x += this.x_velocity * this.speed;
-            this.y += this.y_velocity * this.speed;
-
-            var tanks = scene.tanks;
-            for(var i in tanks) {
-                if(tanks[i].intersect(parent)) {
-                    if(tanks[i] != player) {
-                        console.log("hitting!");
-                        tanks[i].die();
-                        tanks[i].remove();
-
-                        tanks.splice(i, 1);
-                        this.remove();
-                    }
-                }
-            }*/
-/*
-            for(var i in walls) {
-                if(walls[i].intersect(this)) {
-                    this.num_bounces--;
-                    if(this.x  < walls[i].x) {
-                        //bullet is left of wall
-                        if(this.x_velocity > 0) {
-                            //bullset is moving to the left
-                            this.x_velocity *= -1;
-                            //break;
-                        }
-                    }
-                    else if(this.x > walls[i].x) {
-                        //bullet is right of wall
-                        if(this.x_velocity < 0) {
-                            //bullet is moving to the right
-                            this.x_velocity *= -1;
-                            //break;
-                        }
-                    }
-                    if(this.y > walls[i].y) {
-                        //bullet is below block
-                        if(this.y_velocity < 0) {
-                            //bullet is moving upwards
-                            this.y_velocity *= -1;
-                            //break;
-                        }
-                    }
-                    else if(this.y < walls[i].y) {
-                        //bullet is above block
-                        if(this.y_velocity > 0) {
-                            //bullet is moving downwards
-                            this.y_velocity *= -1;
-                            //break;
-                        }
-                    }
-                    break;
-                }
-            }*/
-
-            if(this.num_bounces < 0) {
-                //this.remove();
-            }
-
-        
-        
     },
     onenterframe : function () {
         var tanks = this.currentScene.tanks;        
@@ -102,6 +39,52 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                 
             }
         }
+
+
+        for(var i in this.walls) {
+            if(this.walls[i].intersect(this)) {
+                this.num_bounces--;
+                if(this.x  < this.walls[i].x) {
+                    //bullet is left of wall
+                    if(this.x_velocity > 0) {
+                        //bullset is moving to the left
+                        this.x_velocity *= -1;
+                        //break;
+                    }
+                }
+                else if(this.x > this.walls[i].x) {
+                    //bullet is right of wall
+                    if(this.x_velocity < 0) {
+                        //bullet is moving to the right
+                        this.x_velocity *= -1;
+                        //break;
+                    }
+                }
+                if(this.y > this.walls[i].y) {
+                    //bullet is below block
+                    if(this.y_velocity < 0) {
+                        //bullet is moving upwards
+                        this.y_velocity *= -1;
+                        //break;
+                    }
+                }
+                else if(this.y < this.walls[i].y) {
+                    //bullet is above block
+                    if(this.y_velocity > 0) {
+                        //bullet is moving downwards
+                        this.y_velocity *= -1;
+                        //break;
+                    }
+                }
+                break;
+            }
+        }
+
+        if(this.num_bounces < 0) {
+            this.currentScene.removeChild(this);
+        }
+
     }
 
 });
+
