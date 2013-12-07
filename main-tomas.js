@@ -42,24 +42,6 @@ window.onload = function() {
         game.pushScene(new TitleScene());        
     };
 
-    var Wall = enchant.Class.create(enchant.Sprite, {
-        initialize: function(x, y, destructible) {
-            enchant.Sprite.call(this, 64, 64);
-            this.image = game.assets['images/blacksquare.png']
-            this.frame = 3;
-            this.x = x;
-            this.y = y;
-            this.destructible = destructible;
-            this.opacity = 0;
-            game.rootScene.addChild(this);
-        },
-
-        remove: function() {
-            game.rootScene.removeChild(this);
-            delete this;
-        }
-    });
-
     Level1Scene = Class.create(Scene, 
     {
         initialize: function()
@@ -132,17 +114,6 @@ window.onload = function() {
         }
     });
 	
-	/*
-walls = new Array();
-for(var i = 0; i < this.height / 16; i++) {
-            walls.push(new Wall(0, i * 16, false));
-            walls.push(new Wall(this.height - 16, i * 16, false));
-            walls.push(new Wall(i * 16, 0, false));
-            walls.push(new Wall(i * 16, this.height - 16, false));
-        }
-
-*/
-
     //start game
     game.start();
 };

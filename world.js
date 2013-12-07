@@ -1,4 +1,22 @@
- // World class
+ // World class and Wall
+    Wall = enchant.Class.create(enchant.Sprite, {
+        initialize: function(x, y, destructible) {
+            enchant.Sprite.call(this, 64, 64);
+            this.image = game.assets['images/blacksquare.png']
+            this.frame = 3;
+            this.x = x;
+            this.y = y;
+            this.destructible = destructible;
+            this.opacity = 0;
+            game.rootScene.addChild(this);
+        },
+
+        remove: function() {
+            game.rootScene.removeChild(this);
+            delete this;
+        }
+    });
+
     World =  enchant.Class.create(enchant.Group, {
         initialize: function(levelnumber, wallcolor, destructiblewallcolor) {
             enchant.Group.call(this);
