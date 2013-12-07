@@ -3,8 +3,6 @@ enchant();
 var game;
 
 window.onload = function() {
-
-    //create game object
     game = new Core(768, 640);
     game.fps = 30;
 
@@ -12,8 +10,6 @@ window.onload = function() {
     game.keybind(68, 'right');
     game.keybind(87, 'up');
     game.keybind(83, 'down');
-     
-    //load images
     game.preload('images/bluetiles.png',
                     'images/cyantiles.png',
                     'images/greentiles.png',
@@ -40,9 +36,7 @@ window.onload = function() {
                     'images/yellowbullet.png',
                     'sounds/select.wav');
 
-    //called when the loading is complete
-    game.onload = function() {       
-        //game.pushScene(new GameOverScene());
+    game.onload = function() {
         game.pushScene(new Level1Scene());
         game.pushScene(new TitleScene());        
     };
@@ -68,14 +62,6 @@ window.onload = function() {
 
             var tank = new PlayerTank(100,100,'blue','blue',world);
             this.addChild(tank);
-
-            //var tank1 = new EnemyTank(300,100,'violet','violet',world);
-            //this.addChild(tank1);
-
-            //var tank2 = new EnemyTank(500,100,'red','red',world);
-            //this.addChild(tank2);
-
-            //this.tanks = [tank1, tank2];
 			
 			//var hpup= new powerup(400,100,1,world);
 			//this.addChild(hpup);
