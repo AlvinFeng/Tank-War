@@ -1,6 +1,6 @@
 Bullet = enchant.Class.create(enchant.Sprite, {
     initialize: function (startx, endx, starty, endy, speed, num_bounces, world, scene, color) {
-        enchant.Sprite.call(this, 16, 16);
+        enchant.Sprite.call(this, 24, 32);
         //this.image = game.assets['images/' + color + 'bullet.png'];
         this.image = game.assets['images/yellowbullet.png'];
         this.x = startx;

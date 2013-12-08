@@ -67,6 +67,12 @@ window.onload = function() {
                         this.walls.push(new Wall((j + 1) * 64, (i + 1) * 64, destruct));          
                 }        
             }
+            for (var i = 0; i < 12; i++) {
+                this.walls.push(new Wall(i * 64, 0, false));
+                this.walls.push(new Wall(i * 64, 576, false));
+                this.walls.push(new Wall(0, (i + 1) * 64, false));
+                this.walls.push(new Wall(704, (i + 1) * 64, false));
+            }
 
             this.tanks = [];
             this.tanks[0] = new EnemyTank(300,100,'violet','violet',world, this);
