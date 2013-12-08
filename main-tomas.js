@@ -34,7 +34,8 @@ window.onload = function() {
                     'images/redbullet.png',
 					'images/powerup.png',
                     'images/yellowbullet.png',
-                    'images/yellowbullet2.png',
+                    'images/yellowbullet2.png',                    
+                    'images/yellowbullet3.png',
                     'sounds/select.wav',
                     'images/blacksquare.png',
 					'images/effect0.gif'
@@ -87,8 +88,11 @@ window.onload = function() {
 			//var hpup= new powerup(400,100,1,world);
 			//this.addChild(hpup);
 
-            this.bUpgrade = new BulletUpgrade(300, 100, this);
+            this.bUpgrade = new BulletUpgrade(300, 100, this, 2);
             this.addChild(this.bUpgrade);
+
+            var bUpgrade = new BulletUpgrade(600, 500, this, 3);
+            this.addChild(bUpgrade);
 
             this.addEventListener('touchend', function (e) {
                 var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,4, world, game.currentScene);
