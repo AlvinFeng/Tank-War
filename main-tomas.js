@@ -34,6 +34,7 @@ window.onload = function() {
                     'images/redbullet.png',
 					'images/powerup.png',
                     'images/yellowbullet.png',
+                    'images/yellowbullet2.png',
                     'sounds/select.wav',
                     'images/blacksquare.png');
 
@@ -72,14 +73,17 @@ window.onload = function() {
             this.tanks[1] = new EnemyTank(500,100,'red','red',world, this);
             this.addChild(this.tanks[1]);            
 
-            var tank = new PlayerTank(100,100,'blue','blue',world);
-            this.addChild(tank);
+            this.tankPlayer = new PlayerTank(100,100,'blue','blue',world);
+            this.addChild(this.tankPlayer);
 			
 			//var hpup= new powerup(400,100,1,world);
 			//this.addChild(hpup);
 
+            var bUpgrade = new BulletUpgrade(300, 100, this);
+            this.addChild(bUpgrade);
+
             this.addEventListener('touchend', function (e) {
-                var b = new Bullet(tank.x + 20,e.x,tank.y + 25,e.y,10,10, world, game.currentScene);
+                var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,10, world, game.currentScene);
                 this.addChild(b);
             });
         }

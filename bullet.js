@@ -88,3 +88,20 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 
 });
 
+BulletUpgrade = enchant.Class.create(enchant.Sprite, {
+    initialize: function (x, y, scene) {
+        enchant.Sprite.call(this, 24, 32);
+        this.image = game.assets['images/yellowbullet2.png'];
+        this.x = x;
+        this.y = y;
+        this.currentScene = scene;
+    },
+    onenterframe : function () {
+        if (this.intersect(this.currentScene.tankPlayer)) {
+            console.log("Upgraded!");
+        }
+        if (this.rotation >= 355)
+                this.rotation = 0;
+            this.rotation++;
+    }
+});
