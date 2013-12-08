@@ -54,6 +54,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
             if(this.within(tanks[i], 20)) {
 				var blast=new Blast(tanks[i].x,tanks[i].y,world,this.currentScene);
 				this.currentScene.addChild(blast);
+                 game.assets['sounds/explosion.wav'].play();
                 tanks[i].die();
                 tanks[i].remove();
                 tanks.splice(i, 1);

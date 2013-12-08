@@ -38,7 +38,9 @@ window.onload = function() {
                     'images/yellowbullet3.png',
                     'sounds/select.wav',
                     'images/blacksquare.png',
-					'images/effect0.gif'
+					'images/effect0.gif',
+                    'sounds/bgMusic.mp3',
+                    'sounds/explosion.wav'
 					);
 
     game.onload = function() {
@@ -109,7 +111,7 @@ window.onload = function() {
             var titleBG = new Sprite(1422, 800);
             titleBG.image = game.assets["images/blackBG.png"];
             this.addChild(titleBG);
-
+            game.assets['sounds/bgMusic.mp3'].play();
             world = new World(0,'cyan','red');
             var tank = new PlayerTank(100,100,'blue','blue',world);
             tank.rotateWholeTank(90);
@@ -140,9 +142,6 @@ window.onload = function() {
             titleBG.x = 250;
             titleBG.y = 350;
             this.addChild(titleBG);
-        },
-        ontouchend: function () {
-            
         }
     });
 	
