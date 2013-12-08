@@ -36,7 +36,9 @@ window.onload = function() {
                     'images/yellowbullet.png',
                     'images/yellowbullet2.png',
                     'sounds/select.wav',
-                    'images/blacksquare.png');
+                    'images/blacksquare.png',
+					'images/effect0.gif'
+					);
 
     game.onload = function() {
         game.pushScene(new Level1Scene());

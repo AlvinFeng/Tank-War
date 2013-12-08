@@ -32,6 +32,8 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         this.y += this.y_velocity * this.speed;
         for(var i in tanks) {
             if(this.within(tanks[i], 20)) {
+				var blast=new Blast(tanks[i].x,tanks[i].y,world,this.currentScene);
+				this.currentScene.addChild(blast);
                 tanks[i].die();
                 tanks[i].remove();
                 tanks.splice(i, 1);
