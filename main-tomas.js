@@ -105,7 +105,7 @@ window.onload = function() {
     {
         initialize: function(){
             Scene.apply(this);
-            
+            BulletUpgrade.TitleScreen = true;
             var titleBG = new Sprite(1422, 800);
             titleBG.image = game.assets["images/blackBG.png"];
             this.addChild(titleBG);
@@ -118,15 +118,31 @@ window.onload = function() {
             tank.y = 200;
             this.addChild(tank);
 
+            var bUpgrade = new BulletUpgrade(150, 50, this, 1);
+            bUpgrade.scale(3, 3);
+            this.addChild(bUpgrade);
+
+            bUpgrade = new BulletUpgrade(350, 50, this, 2);
+            bUpgrade.scale(3, 3);
+            this.addChild(bUpgrade);
+
+            bUpgrade = new BulletUpgrade(550, 50, this, 3);
+            bUpgrade.scale(3, 3);
+            this.addChild(bUpgrade);
+
             var titleBG = new Sprite(236, 48);
             titleBG.image = game.assets["images/start.png"];
+            titleBG.ontouchend = function () {
+                game.assets["sounds/select.wav"].play();
+                game.popScene();
+                BulletUpgrade.TitleScreen = false;
+            };
             titleBG.x = 250;
             titleBG.y = 350;
             this.addChild(titleBG);
         },
         ontouchend: function () {
-            game.assets["sounds/select.wav"].play();
-            game.popScene();
+            
         }
     });
 	
