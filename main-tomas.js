@@ -88,8 +88,8 @@ window.onload = function() {
             this.tankPlayer = new PlayerTank(100,100,'blue','blue',world);
             this.addChild(this.tankPlayer);
 			
-			//var hpup= new powerup(400,100,1,world);
-			//this.addChild(hpup);
+			var hpup= new Powerup(120,200,1,this);
+			this.addChild(hpup);
 
             this.bUpgrade = new BulletUpgrade(300, 100, this, 2);
             this.addChild(this.bUpgrade);
