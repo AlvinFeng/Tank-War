@@ -35,7 +35,9 @@ window.onload = function() {
 					'images/powerup.png',
                     'images/yellowbullet.png',
                     'sounds/select.wav',
-                    'images/blacksquare.png');
+                    'images/blacksquare.png',
+					'images/effect0.gif'
+					);
 
     game.onload = function() {
         game.pushScene(new Level1Scene());
