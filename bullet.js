@@ -23,6 +23,21 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 
         this.x_velocity = x_delta / total;
         this.y_velocity = y_delta / total;
+
+        var rotation = Math.atan((endy - starty)/ (endx - startx)) * (180 / Math.PI);
+        if ((endx - startx) < 0){
+            rotation = Math.atan((starty - endy)/ (startx - endx)) * (180 / Math.PI);
+            rotation += 180;
+        }
+        if (rotation + 90 > 360)
+        {
+            var diff = rotation - 360;
+            rotation = diff + 90
+        }
+        else {
+            rotation += 90;
+        }
+        this.rotation = rotation;
     },
     onenterframe : function () {
         var tanks = this.currentScene.tanks;        
