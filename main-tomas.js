@@ -73,7 +73,7 @@ window.onload = function() {
                 this.walls.push(new Wall(0, (i + 1) * 64, false));
                 this.walls.push(new Wall(704, (i + 1) * 64, false));
             }
-
+            Bullet.upgradeLevel = 1;
             this.tanks = [];
             this.tanks[0] = new EnemyTank(300,100,'violet','violet',world, this);
             this.addChild(this.tanks[0]);
@@ -87,8 +87,8 @@ window.onload = function() {
 			//var hpup= new powerup(400,100,1,world);
 			//this.addChild(hpup);
 
-            var bUpgrade = new BulletUpgrade(300, 100, this);
-            this.addChild(bUpgrade);
+            this.bUpgrade = new BulletUpgrade(300, 100, this);
+            this.addChild(this.bUpgrade);
 
             this.addEventListener('touchend', function (e) {
                 var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,4, world, game.currentScene);
