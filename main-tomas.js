@@ -91,7 +91,7 @@ window.onload = function() {
             this.addChild(bUpgrade);
 
             this.addEventListener('touchend', function (e) {
-                var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,10, world, game.currentScene);
+                var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,4, world, game.currentScene);
                 this.addChild(b);
             });
         }
