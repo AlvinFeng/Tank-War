@@ -39,9 +39,9 @@ window.onload = function() {
                     'sounds/select.wav',
                     'images/blacksquare.png',
 					'images/effect0.gif',
-                    'sounds/bgMusic.mp3',
                     'sounds/bgMusic2.mp3',
-                    'sounds/explosion.wav'
+                    'sounds/explosion.wav',
+                    'sounds/laserShot.wav'
 					);
 
     game.onload = function() {
@@ -100,6 +100,7 @@ window.onload = function() {
             this.addEventListener('touchend', function (e) {
                 var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,4, world, game.currentScene);
                 this.addChild(b);
+                game.assets["sounds/laserShot.wav"].play();
             });
         }
     });
@@ -112,7 +113,7 @@ window.onload = function() {
             var titleBG = new Sprite(1422, 800);
             titleBG.image = game.assets["images/blackBG.png"];
             this.addChild(titleBG);
-            game.assets['sounds/bgMusic2.mp3'].play();
+            //game.assets['sounds/bgMusic2.mp3'].play();
             world = new World(0,'cyan','red');
             var tank = new PlayerTank(100,100,'blue','blue',world);
             tank.rotateWholeTank(90);
