@@ -15,8 +15,6 @@ Tank = enchant.Class.create(enchant.Group,
 			
 			this.hp=3;
 			
-			
-			
             this.world = world;
 
             this.x = x;

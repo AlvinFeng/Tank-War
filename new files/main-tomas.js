@@ -5,7 +5,8 @@ var game;
 window.onload = function() {
     game = new Core(768, 640);
     game.fps = 30;
-
+	game.hp=3;
+	game.score=0;
     game.keybind(65, 'left');
     game.keybind(68, 'right');
     game.keybind(87, 'up');
@@ -40,14 +41,17 @@ window.onload = function() {
                     'sounds/select.wav',
                     'images/blacksquare.png',
 					'images/effect0.gif',
+					'images/tutorial.png',
                     'sounds/bgMusic2.mp3',
                     'sounds/explosion.wav',
                     'sounds/laserShot.wav'
 					);
 
     game.onload = function() { 
+	
         game.pushScene(new GameOverScene());
-        game.pushScene(new GameScene());    
+        game.pushScene(new GameScene()); 
+		game.pushScene(new Tutorial());
         game.pushScene(new TitleScene());     
     };
 
@@ -81,16 +85,36 @@ window.onload = function() {
             this.levelText.x = 768;
             this.levelText.y = 300;
             this.addChild(this.levelText);
-
+			
+			//HP FOR THE PC TANK AND THE SCORE
+			lifeLabel = new enchant.Label("");
+			lifeLabel.color = "blue"
+			lifeLabel.x = 950;
+			lifeLabel.y = 580;
+			lifeLabel.scale(3,3);
+			lifeLabel.text= "Life: "+ game.hp;
+			this.addChild(lifeLabel);
+			
+			//ENEMIES KILLED SCORE
+			score = new enchant.Label("");
+			score.color = "blue"
+			score.x = 350;
+			score.y = 580;
+			score.scale(3,3);
+			score.text= "Enemies killed: "+ game.score;
+			this.addChild(score);
+			
+			
             Bullet.upgradeLevel = 1;
 
         },
         onenterframe: function() {  
             if(this.currentWorld.enemyTanks.length == 0)
             {
-                if (this.currentWorld.levelNumber == 10)
+                if (this.currentWorld.levelNumber == 9)
                 {
                     game.popScene();
+                    game.pushScene(new WinScene());
                 }
                 this.previousWorld = this.currentWorld;
                 this.currentlevel++;
@@ -128,6 +152,9 @@ window.onload = function() {
                     this.removeChild(this.previousWorld);
                 }
             }
+			
+			lifeLabel.text= "Life: "+ game.hp;
+			score.text="Enemies killed: "+ game.score;
         }
     });
 
@@ -145,7 +172,7 @@ window.onload = function() {
                 }
             };
             this.addChild(titleBG);
-            //game.assets['sounds/bgMusic2.mp3'].play();
+            game.assets['sounds/bgMusic2.mp3'].play();
             world = new World(0);
             this.tank = new PlayerTank(100,100,'blue','blue',world);
             this.tank.rotateWholeTank(90);
@@ -191,6 +218,19 @@ window.onload = function() {
             this.addChild(titleBG);
         }
     });
+	
+	Tutorial = Class.create(Scene,
+	{
+		initialize: function(){
+            Scene.apply(this);
+            var tut = new Sprite(768, 640);
+            tut.image = game.assets["images/tutorial.png"];
+            tut.ontouchend = function () {
+                    game.popScene();
+            };
+			this.addChild(tut);
+		},
+	});
 
     GameOverScene = Class.create(Scene, 
     {
@@ -206,7 +246,7 @@ window.onload = function() {
                     game.pushScene(new TitleScene());   
             };
             this.addChild(titleBG);
-            world = new World(0,'cyan','red', this);
+            world = new World(0);
             this.tank = new PlayerTank(100,100,'red','red',world);
             this.tank.rotateWholeTank(90);
             this.tank.scale(5, 5);
@@ -233,7 +273,57 @@ window.onload = function() {
             titleBG.y = 350;
             this.addChild(titleBG);
 
-            var score = new enchant.Label("Score: ");
+            var score = new enchant.Label("Score: "+ game.score);
+            score.color = "white";
+            score.scale(2, 2);
+            score.x = 400;
+            score.y = 500;
+            this.addChild(score);
+        }
+    });
+
+    WinScene = Class.create(Scene, 
+    {
+        initialize: function(){
+            Scene.apply(this);
+            BulletUpgrade.TitleScreen = true;
+            var titleBG = new Sprite(1422, 800);
+            titleBG.image = game.assets["images/blackBG.png"];
+            titleBG.ontouchend = function () {
+                    game.popScene();
+                    game.pushScene(new GameOverScene());
+                    game.pushScene(new GameScene());    
+                    game.pushScene(new TitleScene());   
+            };
+            this.addChild(titleBG);
+            world = new World(0);
+            this.tank = new PlayerTank(100,100,'blue','blue',world);
+            this.tank.rotateWholeTank(90);
+            this.tank.scale(5, 5);
+            this.tank.x = 325;
+            this.tank.y = 200;
+            this.addChild(this.tank);
+
+            this.bUpgrade = new BulletUpgrade(150, 50, this, 1);
+            this.bUpgrade.scale(3, 3);
+            this.addChild(this.bUpgrade);
+
+            this.bUpgrade2 = new BulletUpgrade(350, 50, this, 2);
+            this.bUpgrade2.scale(3, 3);
+            this.addChild(this.bUpgrade2);
+
+            this.bUpgrade3 = new BulletUpgrade(550, 50, this, 3);
+            this.bUpgrade3.scale(3, 3);
+            this.addChild(this.bUpgrade3);
+
+            var label = new Label("You Win!");
+            label.color = "white";
+            label.x = 650;
+            label.y = 350;
+            label.scale(4,4);
+            this.addChild(label);
+
+            var score = new enchant.Label("Score: "+ game.score);
             score.color = "white";
             score.scale(2, 2);
             score.x = 400;

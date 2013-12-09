@@ -128,6 +128,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                     }
                     this.remove();
                     GameScene.bulletCount--;
+<<<<<<< HEAD
                 }
                 else
                 {
@@ -137,6 +138,19 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                     this.world.playerTank.die();
                     this.world.playerTank.remove();
                     this.remove();
+=======
+				}
+				else
+				{
+					var blast=new Blast(this.world.enemyTanks[i].x,this.world.enemyTanks[i].y,world);
+					game.currentScene.addChild(blast);
+					game.assets['sounds/explosion.wav'].play();
+					game.score++;
+					this.world.enemyTanks[i].die();
+					this.world.enemyTanks[i].remove();
+					this.world.enemyTanks.splice(i, 1);
+					this.remove();
+>>>>>>> 2b21c0e1002e03e410f9e7c639af6d62bdd8deb7
                     GameScene.bulletCount--;
                 }
             }

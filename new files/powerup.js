@@ -22,7 +22,7 @@ Powerup = enchant.Class.create(enchant.Sprite,
                 //game.assets['sounds/upgrade.wav'].play();
 				if(this.type==0)
 				{
-					this.world.playerTank.hp++;
+					game.hp++;
 				}
 				if(this.type==1)
 				{
