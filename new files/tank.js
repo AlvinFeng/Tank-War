@@ -116,12 +116,15 @@ Tank = enchant.Class.create(enchant.Group,
                 this.turret.rotate(rotate);
             }
 
-            this.fire = function(x,y)
+            this.fire = function(x,y,owner)
             {
+                if(this.world.playerTank == owner) {
+                    console.log("PLAYER TANK");
+                }
                 this.turret.rotation = Math.atan( (y-(this.y + 18))/(x-(this.x + 21) )) *(180/Math.PI) + 90;
                 if(x<(this.x + 21))
                     this.turret.rotation+=180
-                var bullet = new Bullet(this.x + 21, this.y + 18, this.turret.rotation, 3, 2, this.world, "yellow");
+                var bullet = new Bullet(this.x + 21, this.y + 18, this.turret.rotation, 3, 2, this.world, "yellow", owner);
                 this.world.addChild(bullet);
             }
         },

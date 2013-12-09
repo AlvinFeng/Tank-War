@@ -33,7 +33,8 @@
 
             // add enemies to the world
             this.enemyTanks = [];
-            for(var i=0; i<levelEnemyTanks[this.levelNumber].length; i++)
+            //for(var i=0; i<levelEnemyTanks[this.levelNumber].length; i++)
+            for(var i=0; i<1; i++)
             {
                 this.enemyTanks[i] = new EnemyTank( levelEnemyTanks[this.levelNumber][i][0], // position x
                                           levelEnemyTanks[this.levelNumber][i][1], // position y

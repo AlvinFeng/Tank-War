@@ -12,6 +12,10 @@ PlayerTank = Class.create(Tank,
 			lifeLabel.scale(3,3);
 			
 			game.currentScene.addChild(lifeLabel);
+
+            this.fire_wrapper = function(x, y) {
+                this.fire(x, y, this);
+            }
 			
         },
         

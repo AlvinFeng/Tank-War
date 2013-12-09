@@ -67,7 +67,7 @@ window.onload = function() {
             this.addEventListener('touchstart', function (e) {
                 if(GameScene.bulletCount < 5)
                 {
-                    this.currentWorld.playerTank.fire(e.x,e.y);                
+                    this.currentWorld.playerTank.fire_wrapper(e.x,e.y);                
                     game.assets["sounds/laserShot.wav"].play();
                     GameScene.bulletCount++;
                 }

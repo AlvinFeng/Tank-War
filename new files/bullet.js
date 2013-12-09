@@ -1,5 +1,5 @@
 Bullet = enchant.Class.create(enchant.Sprite, {
-    initialize: function (startx, starty, direction, speed, num_bounces, world, color) {
+    initialize: function (startx, starty, direction, speed, num_bounces, world, color, owner) {
         enchant.Sprite.call(this, 24, 32);
 
         this.image = game.assets['images/' + color + 'bullet.png'];
@@ -16,6 +16,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         this.num_bounces = num_bounces;
         this.world = world;
         this.rotation = direction;
+        this.owner = owner;
 
         this.collisionPointsOffsetX = [11,11];
         this.collisionPointsOffsetY = [8,22];
@@ -81,34 +82,64 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 
         // Collision with tanks
         for(var i in this.world.enemyTanks) {
-			if(this.within(this.world.enemyTanks[i], 20)) {
-				if(this.world.enemyTanks[i].hp>1)
-				{
+            if(this.owner != this.world.enemyTanks[i] || this.age > 15) {
+    			if(this.within(this.world.enemyTanks[i], 20)) {
+    				if(this.world.enemyTanks[i].hp>1)
+    				{
+                        if (Bullet.upgradeLevel == 2) {
+                            this.world.enemyTanks[i].hp-=2;
+                        }
+                        else if (Bullet.upgradeLevel == 3) {
+                            this.world.enemyTanks[i].hp-=3;
+                        }
+                        else {
+        					this.world.enemyTanks[i].hp--;
+                        }
+    					this.remove();
+                        GameScene.bulletCount--;
+    				}
+    				else
+    				{
+    					var blast=new Blast(this.world.enemyTanks[i].x,this.world.enemyTanks[i].y,world);
+    					game.currentScene.addChild(blast);
+    					game.assets['sounds/explosion.wav'].play();
+    					this.world.enemyTanks[i].die();
+    					this.world.enemyTanks[i].remove();
+    					this.world.enemyTanks.splice(i, 1);
+    					this.remove();
+                        GameScene.bulletCount--;
+    				}
+                }
+            }
+        }
+
+        if(this.owner != this.world.playerTank || this.age > 15) {
+            if(this.within(this.world.playerTank, 20)) {
+                if(this.world.playerTank.hp>1)
+                {
                     if (Bullet.upgradeLevel == 2) {
-                        this.world.enemyTanks[i].hp-=2;
+                        this.world.playerTank.hp-=2;
                     }
                     else if (Bullet.upgradeLevel == 3) {
-                        this.world.enemyTanks[i].hp-=3;
+                        this.world.playerTank.hp-=3;
                     }
                     else {
-    					this.world.enemyTanks[i].hp--;
+                        this.world.playerTank.hp--;
                     }
-					this.remove();
+                    this.remove();
                     GameScene.bulletCount--;
-				}
-				else
-				{
-					var blast=new Blast(this.world.enemyTanks[i].x,this.world.enemyTanks[i].y,world);
-					game.currentScene.addChild(blast);
-					game.assets['sounds/explosion.wav'].play();
-					this.world.enemyTanks[i].die();
-					this.world.enemyTanks[i].remove();
-					this.world.enemyTanks.splice(i, 1);
-					this.remove();
+                }
+                else
+                {
+                    var blast=new Blast(this.world.playerTank.x,this.world.playerTank.y,world);
+                    game.currentScene.addChild(blast);
+                    game.assets['sounds/explosion.wav'].play();
+                    this.world.playerTank.die();
+                    this.world.playerTank.remove();
+                    this.remove();
                     GameScene.bulletCount--;
-				}
+                }
             }
-
         }
 
         this.move();
