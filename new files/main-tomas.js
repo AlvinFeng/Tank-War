@@ -56,11 +56,12 @@ window.onload = function() {
         initialize: function()
         {
             enchant.Scene.call(this);
-            this.currentWorld = new World(0,'cyan','red');
+            this.currentWorld = new World(0);
             this.addChild(this.currentWorld);
             this.currentWorld.removeDestructibleTile(4,0);
             this.bulletTimer = 0;
             this.bulletFired = false;
+            this.currentlevel =0;
             this.backgroundColor='black';
 
             this.addEventListener('touchstart', function (e) {
@@ -82,8 +83,15 @@ window.onload = function() {
             Bullet.upgradeLevel = 1;
 
         },
-        onenterframe: function()
-        {
+        onenterframe: function() {  
+            if(this.currentWorld.enemyTanks.length == 0)
+            {
+                this.currentlevel++;
+                this.removeChild(this.currentWorld);
+                this.currentWorld = new World(this.currentlevel);
+                this.addChild(this.currentWorld);
+            }
+
             this.bulletTimer++;
             if (this.bulletTimer / 50 == 1)
             {

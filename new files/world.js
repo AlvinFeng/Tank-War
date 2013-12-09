@@ -1,6 +1,6 @@
  // World class
     World =  enchant.Class.create(enchant.Group, {
-        initialize: function(levelnumber, wallcolor, destructiblewallcolor) {
+        initialize: function(levelnumber) {
             enchant.Group.call(this);
             this.levelNumber = levelnumber;
             this.currentLevelTiles = levelmaps[levelnumber];
@@ -16,10 +16,10 @@
             }
 
             this.worldMap = new Map(64,64);
-            this.worldMap.image = game.assets['images/' + wallcolor + 'tiles.png'];
+            this.worldMap.image = game.assets['images/' + levelsColors[levelnumber][0] + 'tiles.png'];
 
             this.worldMapDestructible = new Map(64,64);
-            this.worldMapDestructible.image = game.assets['images/' + destructiblewallcolor + 'tiles.png'];
+            this.worldMapDestructible.image = game.assets['images/' + levelsColors[levelnumber][1] + 'tiles.png'];
 
 
             // add Player to the world
