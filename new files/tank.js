@@ -12,7 +12,11 @@ Tank = enchant.Class.create(enchant.Group,
             this.turret.image = game.assets['images/' + turretcolor + 'tank.png'];
             this.turret.frame = 1;
             this.addChild(this.turret); 
+			
 			this.hp=3;
+			
+			
+			
             this.world = world;
 
             this.x = x;
