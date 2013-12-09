@@ -67,7 +67,6 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         for(var i in this.walls) {
             if(this.walls[i].intersect(this)) {
                 if (this.walls[i].destructible) {
-                    console.log("sending " + (this.walls[i].x / 64) + " " + (this.walls[i].y / 64));
                     this.currentScene.world.removeDestructibleTile((this.walls[i].y / 64) - 1, (this.walls[i].x / 64) - 1);
                     this.walls[i].remove();
                     this.walls.splice(i, 1);
