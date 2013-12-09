@@ -1,6 +1,6 @@
 Powerup = enchant.Class.create(enchant.Sprite, 
 {
-	initialize: function(x,y,type,scene){
+	initialize: function(x,y,type,world){
 		enchant.Sprite.call(this,64,64);
 		this.image = game.assets['images/' + 'powerup.png'];
 		if(type==0)
@@ -14,20 +14,20 @@ Powerup = enchant.Class.create(enchant.Sprite,
 		this.type=type;
 		this.x = x;
 		this.y = y;
-		this.currentScene = scene;
+		this.world = world;
 	},
 	onenterframe : function () {
-        if (this.within(this.currentScene.currentWorld.playerTank, 30)) {
-                this.currentScene.removeChild(this);
+        if (this.within(this.world.playerTank, 30)) {
+                this.world.removeChild(this);
                 //game.assets['sounds/upgrade.wav'].play();
 				if(this.type==0)
 				{
-					this.currentScene.currentWorld.playerTank.hp++;
+					this.world.playerTank.hp++;
 				}
 				if(this.type==1)
 				{
-					this.currentScene.currentWorld.playerTank.movement++;
-					this.currentScene.currentWorld.playerTank.movement++;
+					this.world.playerTank.movement++;
+					this.world.playerTank.movement++;
 				}
             }
         if (this.rotation >= 355)

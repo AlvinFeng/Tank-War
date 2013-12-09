@@ -46,11 +46,21 @@
             var x = bulletUpgrades[this.levelNumber][0];
             var y = bulletUpgrades[this.levelNumber][1];
             var upgradeLevel = bulletUpgrades[this.levelNumber][2];
-            console.log(x);
-            console.log(y);
-            console.log(upgradeLevel);
+
             this.bulletUpgrades = new BulletUpgrade(x,y,upgradeLevel, this);
             this.addChild(this.bulletUpgrades);            
+
+            this.powerUps = [];
+            for (var i = 0; i < powerUps[this.levelNumber].length; i++)
+            {
+                if (powerUps[this.levelNumber][i].length > 0) {
+                    var x = powerUps[this.levelNumber][i][0];
+                    var y = powerUps[this.levelNumber][i][1];
+                    var type = powerUps[this.levelNumber][i][2];
+                    this.powerUps[i] = new Powerup(x, y, type, this);
+                    this.addChild(this.powerUps[i]);
+                }
+            }
 
             this.isWall = function(i,j) 
             {
