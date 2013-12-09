@@ -96,7 +96,6 @@ window.onload = function() {
 			lifeLabel.x = 950;
 			lifeLabel.y = 580;
 			lifeLabel.scale(3,3);
-			lifeLabel.text= "Life: "+ game.hp;
 			this.addChild(lifeLabel);
 			
 			//ENEMIES KILLED SCORE
