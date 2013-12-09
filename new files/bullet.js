@@ -82,7 +82,15 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 			if(this.within(this.world.enemyTanks[i], 20)) {
 				if(this.world.enemyTanks[i].hp>1)
 				{
-					this.world.enemyTanks[i].hp--;
+                    if (Bullet.upgradeLevel == 2) {
+                        this.world.enemyTanks[i].hp-=2;
+                    }
+                    else if (Bullet.upgradeLevel == 3) {
+                        this.world.enemyTanks[i].hp-=3;
+                    }
+                    else {
+    					this.world.enemyTanks[i].hp--;
+                    }
 					this.remove();
                     GameScene.bulletCount--;
 				}

@@ -88,7 +88,7 @@ window.onload = function() {
         onenterframe: function() {  
             if(this.currentWorld.enemyTanks.length == 0)
             {
-                if (this.currentWorld.levelNumber)
+                if (this.currentWorld.levelNumber == 10)
                 {
                     game.popScene();
                 }
