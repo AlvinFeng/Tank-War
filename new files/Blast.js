@@ -8,7 +8,6 @@ var Blast= enchant.Class.create(enchant.Sprite,{
 		this.frame=0;
 		this.duration=30;
 		this.world = world;
-		this.currentScene = scene;
 		
 		this.addEventListener('enterframe',function(){
 			this.frame= Math.floor(this.age/this.duration*5);
@@ -16,6 +15,6 @@ var Blast= enchant.Class.create(enchant.Sprite,{
 		})
 	},
 	remove: function(){
-		this.currentScene.removeChild(this)
+		game.currentScene.removeChild(this)
 	}
 });

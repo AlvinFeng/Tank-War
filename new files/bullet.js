@@ -78,9 +78,9 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         // Collision with tanks
         for(var i in this.world.enemyTanks) {
             if(this.within(this.world.enemyTanks[i], 20)) {
-				//var blast=new Blast(tanks[i].x,tanks[i].y,world,this.currentScene);
-				//this.currentScene.addChild(blast);
-                //game.assets['sounds/explosion.wav'].play();
+				var blast=new Blast(this.world.enemyTanks[i].x,this.world.enemyTanks[i].y,world);
+				game.currentScene.addChild(blast);
+                game.assets['sounds/explosion.wav'].play();
                 this.world.enemyTanks[i].die();
                 this.world.enemyTanks[i].remove();
                 this.world.enemyTanks.splice(i, 1);
