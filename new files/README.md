@@ -1,5 +1,8 @@
-Tank-War
+Neo Tanks
 ========
 A game written using enchant.js for CPE 378 @ Cal Poly.
 
-Everyon should start with their own main-NAME.js
+Steven Tan
+Tomas Fonseca
+Michael Sanchez
+Alvin Feng
