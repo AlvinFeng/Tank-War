@@ -21,6 +21,8 @@
             this.worldMapDestructible = new Map(64,64);
             this.worldMapDestructible.image = game.assets['images/' + levelsColors[levelnumber][1] + 'tiles.png'];
 
+            //keep track of bullets
+            this.bullets = new Array();
 
             // add Player to the world
             this.playerTank = new PlayerTank( levelPlayerTank[this.levelNumber][0],

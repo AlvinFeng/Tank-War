@@ -17,6 +17,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         this.world = world;
         this.rotation = direction;
         this.owner = owner;
+        this.world.bullets.push(this);
 
         this.collisionPointsOffsetX = [11,11];
         this.collisionPointsOffsetY = [8,22];
@@ -81,8 +82,21 @@ Bullet = enchant.Class.create(enchant.Sprite, {
     onenterframe : function () {
 
         // Collision with tanks
+
+        for(var i in this.world.bullets) {
+            if(this.world.bullets[i] != this) {
+                if(this.within(this.world.bullets[i], 10)) {
+                    GameScene.bulletCount--;
+                    this.world.bullets[i].remove();
+                    this.world.bullets.splice(this.world.bullets.indexOf(this), 1);
+                    this.world.bullets.splice(i, 1);
+                    GameScene.bulletCount--;
+                    this.remove();
+                }
+            }
+        }
         for(var i in this.world.enemyTanks) {
-            if(this.owner != this.world.enemyTanks[i] || this.age > 15) {
+            if(this.owner != this.world.enemyTanks[i] || this.age > 25) {
     			if(this.within(this.world.enemyTanks[i], 20)) {
     				if(this.world.enemyTanks[i].hp>1)
     				{
@@ -95,8 +109,6 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                         else {
         					this.world.enemyTanks[i].hp--;
                         }
-    					this.remove();
-                        GameScene.bulletCount--;
     				}
     				else
     				{
@@ -106,14 +118,16 @@ Bullet = enchant.Class.create(enchant.Sprite, {
     					this.world.enemyTanks[i].die();
     					this.world.enemyTanks[i].remove();
     					this.world.enemyTanks.splice(i, 1);
-    					this.remove();
-                        GameScene.bulletCount--;
     				}
+                    this.world.bullets.splice(this.world.bullets.indexOf(this), 1);
+                    GameScene.bulletCount--;
+                    this.remove();
+                    
                 }
             }
         }
 
-        if(this.owner != this.world.playerTank || this.age > 15) {
+        if(this.owner != this.world.playerTank || this.age > 25) {
             if(this.within(this.world.playerTank, 20)) {
                 if(this.world.playerTank.hp>1)
                 {
@@ -126,8 +140,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                     else {
                         this.world.playerTank.hp--;
                     }
-                    this.remove();
-                    GameScene.bulletCount--;
+                    
                 }
 				else
 				{
@@ -135,17 +148,20 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 					game.currentScene.addChild(blast);
 					game.assets['sounds/explosion.wav'].play();
                     //Game over should be here
-					this.remove();
-                    GameScene.bulletCount--;
                 }
+
+                this.world.bullets.splice(this.world.bullets.indexOf(this), 1);
+                GameScene.bulletCount--;
+                this.remove();
             }
         }
 
         this.move();
 
         if(this.num_bounces < 0) {
-            this.world.removeChild(this);            
+            this.world.bullets.splice(this.world.bullets.indexOf(this), 1);
             GameScene.bulletCount--;
+            this.world.removeChild(this);            
         }
     }
 });
