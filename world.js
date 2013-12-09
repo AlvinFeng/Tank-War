@@ -370,13 +370,6 @@
 
             this.removeDestructibleTile = function(x, y)
             {
-                console.log(x + " " + y);
-                console.log("Wall Val " + this.currentLevelTiles[x][y]);
-                console.log(this.currentLevelTiles);
-                for(var i = 0; i < this.currentLevelTiles[0][i].length; i++)
-                {
-                    console.log(this.currentLevelTiles[0][i]);
-                }
                 if(this.currentLevelTiles[x][y]==2)
                 {
                     this.currentLevelTiles[x][y]=0;
