@@ -66,40 +66,56 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 
         for(var i in this.walls) {
             if(this.walls[i].intersect(this)) {
-                this.num_bounces--;
-                if(this.x  < this.walls[i].x) {
-                    //bullet is left of wall
-                    if(this.x_velocity > 0) {
-                        //bullset is moving to the left
-                        this.x_velocity *= -1;
-                        //break;
-                    }
+                if (this.walls[i].destructible) {
+                    console.log("sending " + (this.walls[i].x / 64) + " " + (this.walls[i].y / 64));
+                    this.currentScene.world.removeDestructibleTile((this.walls[i].y / 64) - 1, (this.walls[i].x / 64) - 1);
+                    this.walls[i].remove();
+                    this.walls.splice(i, 1);
+                    this.currentScene.removeChild(world.currentLevelTiles[4][1]);
                 }
-                else if(this.x > this.walls[i].x) {
-                    //bullet is right of wall
-                    if(this.x_velocity < 0) {
-                        //bullet is moving to the right
-                        this.x_velocity *= -1;
-                        //break;
+                else {
+                    this.num_bounces--;
+                    if(this.x  < this.walls[i].x) {
+                        //bullet is left of wall
+                        if(this.x_velocity > 0 ) {
+                            //bullset is moving to the left
+                            if (this.y > this.walls[i].y) {
+                                this.x_velocity *= -1;
+                            }
+                        }
+                        else {
+                            console.log("else case if left");
+                        }
                     }
-                }
-                if(this.y > this.walls[i].y) {
-                    //bullet is below block
-                    if(this.y_velocity < 0) {
-                        //bullet is moving upwards
-                        this.y_velocity *= -1;
-                        //break;
+                    else if(this.x > this.walls[i].x) {
+                        //bullet is right of wall
+                        if(this.x_velocity < 0) {
+                            //bullet is moving to the right
+                             if(this.y > this.walls[i].y && ((this.walls[i].x + 64) < this.x + 10)) {
+                                this.x_velocity *= -1;
+                             }
+                        }
                     }
-                }
-                else if(this.y < this.walls[i].y) {
-                    //bullet is above block
-                    if(this.y_velocity > 0) {
-                        //bullet is moving downwards
-                        this.y_velocity *= -1;
-                        //break;
+                    if(this.y > this.walls[i].y) {
+                        //bullet is below block
+
+                        if(this.y_velocity < 0) {
+                            //bullet is moving upwards
+                            console.log((this.walls[i].y + 64));
+                            console.log(this.y);
+                            if (((this.walls[i].y + 64) < (this.y + 5)  && (this.walls[i].y + 64) > this.y) || this.walls[i].y == 0)
+                                this.y_velocity *= -1;
+                        }
                     }
+                    else if(this.y < this.walls[i].y) {
+                        //bullet is above block
+                        if(this.y_velocity > 0) {
+                            //bullet is moving downwards
+                            this.y_velocity *= -1;
+                        }
+                    }
+                    break;
                 }
-                break;
             }
         }
 

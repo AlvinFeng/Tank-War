@@ -18,7 +18,7 @@
     });
 
     World =  enchant.Class.create(enchant.Group, {
-        initialize: function(levelnumber, wallcolor, destructiblewallcolor) {
+        initialize: function(levelnumber, wallcolor, destructiblewallcolor, scene) {
             enchant.Group.call(this);
             this.levelNumber = levelnumber;
             this.currentLevelTiles = levels[levelnumber];
@@ -27,7 +27,7 @@
             for(var i=0; i<10; i++) {
                 worldMapMatrix[i] = new Array(12);
             }
-            
+            this.currentScene = scene;
             var worldMapDestructibleMatrix = [];
             for(var i=0; i<10; i++) {
                 worldMapDestructibleMatrix[i] = new Array(12);
@@ -73,7 +73,6 @@
             }
 
             this.updateMap = function() {
-
                 for(var i = 0;  i<10;i++)
                 {
                     for(var j = 0;  j<12; j++)
@@ -367,11 +366,17 @@
                 }
 
                 this.worldMapDestructible.loadData(worldMapDestructibleMatrix);
-
             } 
 
             this.removeDestructibleTile = function(x, y)
             {
+                console.log(x + " " + y);
+                console.log("Wall Val " + this.currentLevelTiles[x][y]);
+                console.log(this.currentLevelTiles);
+                for(var i = 0; i < this.currentLevelTiles[0][i].length; i++)
+                {
+                    console.log(this.currentLevelTiles[0][i]);
+                }
                 if(this.currentLevelTiles[x][y]==2)
                 {
                     this.currentLevelTiles[x][y]=0;

@@ -54,8 +54,8 @@ window.onload = function() {
         initialize: function()
         {
             Scene.apply(this);
-            world = new World(0,'cyan','red');
-            game.rootScene.addChild(world);
+            this.world = new World(0,'cyan','red', this);
+            game.rootScene.addChild(this.world);
 
             game.rootScene.backgroundColor='black';
 
@@ -79,13 +79,13 @@ window.onload = function() {
             }
             Bullet.upgradeLevel = 1;
             this.tanks = [];
-            this.tanks[0] = new EnemyTank(300,100,'violet','violet',world, this);
+            this.tanks[0] = new EnemyTank(300,100,'violet','violet',this.world, this);
             this.addChild(this.tanks[0]);
 
-            this.tanks[1] = new EnemyTank(500,100,'red','red',world, this);
+            this.tanks[1] = new EnemyTank(500,100,'red','red',this.world, this);
             this.addChild(this.tanks[1]);            
 
-            this.tankPlayer = new PlayerTank(100,100,'blue','blue',world);
+            this.tankPlayer = new PlayerTank(100,100,'blue','blue',this.world);
             this.addChild(this.tankPlayer);
 			
 			var hpup= new Powerup(120,200,1,this);
@@ -98,7 +98,7 @@ window.onload = function() {
             this.addChild(bUpgrade);
 
             this.addEventListener('touchend', function (e) {
-                var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,4, world, game.currentScene);
+                var b = new Bullet(this.tankPlayer.x + 20,e.x,this.tankPlayer.y + 25,e.y,10,4, this.world, game.currentScene);
                 this.addChild(b);
                 game.assets["sounds/laserShot.wav"].play();
             });
@@ -114,7 +114,7 @@ window.onload = function() {
             titleBG.image = game.assets["images/blackBG.png"];
             this.addChild(titleBG);
             //game.assets['sounds/bgMusic2.mp3'].play();
-            world = new World(0,'cyan','red');
+            world = new World(0,'cyan','red', this);
             var tank = new PlayerTank(100,100,'blue','blue',world);
             tank.rotateWholeTank(90);
             tank.scale(5, 5);
