@@ -243,12 +243,7 @@ window.onload = function() {
             BulletUpgrade.TitleScreen = true;
             var titleBG = new Sprite(1422, 800);
             titleBG.image = game.assets["images/blackBG.png"];
-            titleBG.ontouchend = function () {
-                    game.popScene();
-                    game.pushScene(new GameOverScene());
-                    game.pushScene(new GameScene());    
-                    game.pushScene(new TitleScene());   
-            };
+            
             this.addChild(titleBG);
             world = new World(0);
             this.tank = new PlayerTank(100,100,'red','red',world);
@@ -260,7 +255,12 @@ window.onload = function() {
 
             var titleBG = new Sprite(189, 97);
             titleBG.image = game.assets["images/gameover.png"];
-
+            titleBG.ontouchend = function () {
+                    game.popScene();
+                    game.pushScene(new GameOverScene());
+                    game.pushScene(new GameScene());    
+                    game.pushScene(new TitleScene());   
+            };
             titleBG.x = 250;
             titleBG.y = 350;
             this.addChild(titleBG);
