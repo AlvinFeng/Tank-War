@@ -79,6 +79,9 @@ window.onload = function() {
 
             var bUpgrade = new BulletUpgrade(600, 500, this, 3);
             this.addChild(bUpgrade);
+			
+			this.speedup= new Powerup(100,100,0,this);
+			this.addChild(this.speedup);
 
             Bullet.upgradeLevel = 1;
 
@@ -136,8 +139,6 @@ window.onload = function() {
             this.bUpgrade3.scale(3, 3);
             this.addChild(this.bUpgrade3);
 			
-			this.speedup= new Powerup(100,100,1,this);
-			this.addChild(this.speedup);
 
             var titleBG = new Sprite(236, 48);
             titleBG.image = game.assets["images/start.png"];
