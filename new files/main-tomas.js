@@ -61,7 +61,8 @@ window.onload = function() {
             this.backgroundColor='black';
 
             this.addEventListener('touchstart', function (e) {
-                this.currentWorld.playerTank.fire(e.x,e.y);
+                this.currentWorld.playerTank.fire(e.x,e.y);                
+                game.assets["sounds/laserShot.wav"].play();
             });
 
             this.bUpgrade = new BulletUpgrade(300, 100, this, 2);
