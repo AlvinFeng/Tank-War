@@ -5,14 +5,6 @@ PlayerTank = Class.create(Tank,
             //game.assets["./assets/sounds/explosion.ogg"].play();
 			this.movement=2;
 			
-			lifeLabel = new enchant.Label("");
-			lifeLabel.color = "blue"
-            lifeLabel.x = 950;
-            lifeLabel.y = 580;
-			lifeLabel.scale(3,3);
-			
-			game.currentScene.addChild(lifeLabel);
-			
         },
         
         onenterframe: function() {  
@@ -28,7 +20,6 @@ PlayerTank = Class.create(Tank,
             if(game.input.down){
                 this.move(-this.movement);
           }
-		  lifeLabel.text= "Life: "+ this.hp;
 		  
         }
     });

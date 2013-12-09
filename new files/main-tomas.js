@@ -5,7 +5,8 @@ var game;
 window.onload = function() {
     game = new Core(768, 640);
     game.fps = 30;
-
+	game.hp=3;
+	game.score=0;
     game.keybind(65, 'left');
     game.keybind(68, 'right');
     game.keybind(87, 'up');
@@ -47,6 +48,7 @@ window.onload = function() {
 					);
 
     game.onload = function() { 
+	
         game.pushScene(new GameOverScene());
         game.pushScene(new GameScene()); 
 		game.pushScene(new Tutorial());
@@ -83,7 +85,26 @@ window.onload = function() {
             this.levelText.x = 768;
             this.levelText.y = 300;
             this.addChild(this.levelText);
-
+			
+			//HP FOR THE PC TANK AND THE SCORE
+			lifeLabel = new enchant.Label("");
+			lifeLabel.color = "blue"
+			lifeLabel.x = 950;
+			lifeLabel.y = 580;
+			lifeLabel.scale(3,3);
+			lifeLabel.text= "Life: "+ game.hp;
+			this.addChild(lifeLabel);
+			
+			//ENEMIES KILLED SCORE
+			score = new enchant.Label("");
+			score.color = "blue"
+			score.x = 350;
+			score.y = 580;
+			score.scale(3,3);
+			score.text= "Enemies killed: "+ game.score;
+			this.addChild(score);
+			
+			
             Bullet.upgradeLevel = 1;
 
         },
@@ -131,6 +152,9 @@ window.onload = function() {
                     this.removeChild(this.previousWorld);
                 }
             }
+			
+			lifeLabel.text= "Life: "+ game.hp;
+			score.text="Enemies killed: "+ game.score;
         }
     });
 
@@ -249,7 +273,7 @@ window.onload = function() {
             titleBG.y = 350;
             this.addChild(titleBG);
 
-            var score = new enchant.Label("Score: ");
+            var score = new enchant.Label("Score: "+ game.score);
             score.color = "white";
             score.scale(2, 2);
             score.x = 400;
@@ -299,7 +323,7 @@ window.onload = function() {
             label.scale(4,4);
             this.addChild(label);
 
-            var score = new enchant.Label("Score: ");
+            var score = new enchant.Label("Score: "+ game.score);
             score.color = "white";
             score.scale(2, 2);
             score.x = 400;
