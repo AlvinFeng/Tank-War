@@ -26,7 +26,7 @@ EnemyTank = Class.create(Tank, {
 		this.movement=2;		
 		this.type = type;
 		this.shoot_count = 0;
-		this.shoot_delay = 200;
+		this.shoot_delay = 75 + random(75);
 
 		this.die = function() {
 			this.world.removeChild(this);
@@ -154,7 +154,7 @@ EnemyTank = Class.create(Tank, {
 		this.shoot_count++;
 		if(this.shoot_count == this.shoot_delay) {
 			this.ai_shoot(this.world.playerTank.x, this.world.playerTank.y);
-			this.shoot_delay = 150 + random(150);
+			this.shoot_delay = 75 + random(75);
 			this.shoot_count = 0;
 		}
 	}

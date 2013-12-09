@@ -131,13 +131,10 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                 }
 				else
 				{
-					var blast=new Blast(this.world.enemyTanks[i].x,this.world.enemyTanks[i].y,world);
+					var blast=new Blast(this.world.playerTank.x, this.world.playerTank.y,world);
 					game.currentScene.addChild(blast);
 					game.assets['sounds/explosion.wav'].play();
-					game.score++;
-					this.world.enemyTanks[i].die();
-					this.world.enemyTanks[i].remove();
-					this.world.enemyTanks.splice(i, 1);
+                    //Game over should be here
 					this.remove();
                     GameScene.bulletCount--;
                 }
