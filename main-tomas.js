@@ -114,6 +114,7 @@ window.onload = function() {
                 if (TitleScene.StartGame == true) {
                     game.popScene();
                     game.pushScene(new Level1Scene());
+                    BulletUpgrade.TitleScreen = false;
                 }
             };
             this.addChild(titleBG);
