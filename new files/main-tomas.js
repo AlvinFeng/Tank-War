@@ -56,9 +56,11 @@ window.onload = function() {
         initialize: function()
         {
             enchant.Scene.call(this);
-            this.currentWorld = new World(0,'cyan','red');
+            this.currentWorld = new World(0);
             this.addChild(this.currentWorld);
             this.currentWorld.removeDestructibleTile(4,0);
+
+            this.currentlevel =0;
 
             this.backgroundColor='black';
 
@@ -75,6 +77,16 @@ window.onload = function() {
 
             Bullet.upgradeLevel = 1;
 
+        },
+
+        onenterframe: function() {  
+            if(this.currentWorld.enemyTanks.length == 0)
+            {
+                this.currentlevel++;
+                this.removeChild(this.currentWorld);
+                this.currentWorld = new World(this.currentlevel);
+                this.addChild(this.currentWorld);
+            }
         }
     });
 
