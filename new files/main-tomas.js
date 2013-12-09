@@ -64,8 +64,17 @@ window.onload = function() {
                 this.currentWorld.playerTank.fire(e.x,e.y);
             });
 
+            this.bUpgrade = new BulletUpgrade(300, 100, this, 2);
+            this.addChild(this.bUpgrade);
+
+            var bUpgrade = new BulletUpgrade(600, 500, this, 3);
+            this.addChild(bUpgrade);
+
+            Bullet.upgradeLevel = 1;
+
         }
     });
+
     TitleScene = Class.create(Scene, 
     {
         initialize: function(){
@@ -76,7 +85,7 @@ window.onload = function() {
             titleBG.ontouchend = function () {
                 if (TitleScene.StartGame == true) {
                     game.popScene();
-                    game.pushScene(new Level1Scene());
+                    //game.pushScene(new Level1Scene());
                     BulletUpgrade.TitleScreen = false;
                 }
             };
