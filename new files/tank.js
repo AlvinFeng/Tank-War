@@ -20,14 +20,14 @@ Tank = enchant.Class.create(enchant.Group,
             this.width = this.chassis.width;
             this.height = this.chassis.height;
 
-            this.collisionPointsOffsetX=[19, 44, 19, 44];
-            this.collisionPointsOffsetY=[13, 13, 50, 50];
+            this.collisionPointsOffsetX=[19, 44, 19, 44, 31, 31, 25, 25, 38, 38, 19, 44];
+            this.collisionPointsOffsetY=[13, 13, 50, 50, 13, 50, 13, 50, 13, 50, 38, 38];
 
             this.rotate = function(value)
             {
                 var previousCollisionPointsX = [];
                 var previousCollisionPointsY = [];
-                for(var i =0;i<4;i++)
+                for(var i =0;i<12;i++)
                 {
                     var aux = this.getPositionOfCollisionPoint(i);
                     previousCollisionPointsX[i] = aux[0]+this.x;
@@ -42,7 +42,7 @@ Tank = enchant.Class.create(enchant.Group,
                 var currentCollisionPointsX = [];
                 var currentCollisionPointsY = [];
 
-                for(var i =0;i<4;i++)
+                for(var i =0;i<12;i++)
                 {
                     var aux = this.getPositionOfCollisionPoint(i);
                     currentCollisionPointsX[i] = aux[0]+this.x;
@@ -74,7 +74,7 @@ Tank = enchant.Class.create(enchant.Group,
                 var nextx = this.x + value * Math.cos((Math.PI * (this.chassis.rotation-90))/180); 
                 var nexty = this.y +value * Math.sin((Math.PI * (this.chassis.rotation-90))/180); 
 
-                for(var i =0;i<4;i++)
+                for(var i =0;i<12;i++)
                 {
                    var aux = this.getPositionOfCollisionPoint(i);
                    var result = this.world.checkCollision(this.x+aux[0],this.y+aux[1], nextx + aux[0], nexty + aux[1]); 
