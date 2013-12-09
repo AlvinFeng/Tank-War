@@ -11,7 +11,10 @@ Tank = enchant.Class.create(enchant.Group,
             this.turret = new Sprite(64,64);
             this.turret.image = game.assets['images/' + turretcolor + 'tank.png'];
             this.turret.frame = 1;
-            this.addChild(this.turret); 
+            this.addChild(this.turret);
+            this.hit = false;
+            this.hit_frame = 0;
+            this.flash_count = 0;
 			
 			this.hp=3;
 			
@@ -127,5 +130,25 @@ Tank = enchant.Class.create(enchant.Group,
             }
         },
         onenterframe: function() {  
+            Console.log("enter frame");
+            if(this.hit == true) {
+                console.log("this has been hit");
+                if((this.age - this.hit_frame) > 4) {
+                    console.log("Flashing");
+                    this.hit_frame = this.age;
+                    //flash
+                    if(this.opacity != 0) {
+                        this.opacity = 0;
+                    }
+                    else {
+                        this.opacity = 100;
+                    }
+                    this.flash_count++;
+                }
+                if(this.flash_count == 5) {
+                    this.flash_count = 0;
+                    this.hit = false;
+                }
+            }
         }
     });

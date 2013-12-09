@@ -100,6 +100,8 @@ Bullet = enchant.Class.create(enchant.Sprite, {
     			if(this.within(this.world.enemyTanks[i], 20)) {
     				if(this.world.enemyTanks[i].hp>1)
     				{
+                        console.log("Hit tank");
+                        this.world.enemyTanks[i].hit = true;
                         if (Bullet.upgradeLevel == 2) {
                             this.world.enemyTanks[i].hp-=2;
                         }
@@ -131,6 +133,8 @@ Bullet = enchant.Class.create(enchant.Sprite, {
             if(this.within(this.world.playerTank, 20)) {
                 if(this.world.playerTank.hp>1)
                 {
+                    console.log("Hit tank");
+                    this.world.playerTank.hit = true;
                     if (Bullet.upgradeLevel == 2) {
                         this.world.playerTank.hp-=2;
                     }

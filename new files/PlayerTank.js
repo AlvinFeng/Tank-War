@@ -32,6 +32,34 @@ PlayerTank = Class.create(Tank,
             if(game.input.down){
                 this.move(-this.movement);
           }
+            if(this.hit == true) {
+                console.log("this has been hit");
+                if((this.age - this.hit_frame) > 4) {
+                    console.log("Flashing");
+                    this.hit_frame = this.age;
+                    //flash
+                    if(this.turret.opacity != 0) {
+                        console.log("turret opacity set to 0");
+                        this.turret.opacity = 0;
+                        this.chassis.opacity = 0;
+                    }
+                    else {
+                        console.log("turret opacity set to 100");
+                        this.turret.opacity = 100;
+                        this.chassis.opacity = 100;
+                    }
+                    this.flash_count++;
+                }
+                if(this.flash_count > 5) {
+                    this.flash_count = 0;
+                    this.hit = false;
+                    this.turret.opacity = 100;
+                    this.chassis.opacity = 100;
+                }
+            }
+            if(this.flash_count > 5) {
+                this.hit = false;
+            }
 		  
         }
     });

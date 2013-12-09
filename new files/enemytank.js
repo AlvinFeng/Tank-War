@@ -75,6 +75,33 @@ EnemyTank = Class.create(Tank, {
 	},
 
 	onenterframe:function(){
+            if(this.hit == true) {
+                console.log("this has been hit");
+                if((this.age - this.hit_frame) > 4) {
+                    console.log("Flashing");
+                    this.hit_frame = this.age;
+                    //flash
+                   if(this.turret.opacity != 0) {
+                        this.turret.opacity = 0;
+                        this.chassis.opacity = 0;
+                    }
+                    else {
+                        this.turret.opacity = 100;
+                        this.chassis.opacity = 100;
+                    }
+                    this.flash_count++;
+                }
+                if(this.flash_count > 5) {
+                    this.flash_count = 0;
+                    this.turret.opacity = 100;
+                    this.chassis.opacity = 100;
+                    this.hit = false;
+                }
+            }
+            if(this.flash_count > 5)
+            {
+            	this.hit = false;
+            }
 		if(this.collided) {
 				this.mode = 4;
 				this.delay = 10  + random(10);
