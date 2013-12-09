@@ -82,9 +82,6 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                                 this.x_velocity *= -1;
                             }
                         }
-                        else {
-                            console.log("else case if left");
-                        }
                     }
                     else if(this.x > this.walls[i].x) {
                         //bullet is right of wall
