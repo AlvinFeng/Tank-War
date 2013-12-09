@@ -67,13 +67,17 @@ window.onload = function() {
             this.backgroundColor='black';
             this.newWorldAnimation = false;            
             GameScene.bulletCount = 0;
+            GameScene.touchframe = 0;
 
             this.addEventListener('touchstart', function (e) {
-                if(GameScene.bulletCount < 5)
-                {
-                    this.currentWorld.playerTank.fire_wrapper(e.x,e.y);                
-                    game.assets["sounds/laserShot.wav"].play();
-                    GameScene.bulletCount++;
+                if(this.age - GameScene.touchframe > 15) {
+                    if(GameScene.bulletCount < 5)
+                    {
+                        this.currentWorld.playerTank.fire_wrapper(e.x,e.y);                
+                        game.assets["sounds/laserShot.wav"].play();
+                        GameScene.bulletCount++;
+                    }
+                    GameScene.touchframe = this.age;
                 }
             });
 

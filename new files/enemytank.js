@@ -75,54 +75,51 @@ EnemyTank = Class.create(Tank, {
 	},
 
 	onenterframe:function(){
-		switch(this.mode)
-		{
-			case 0:
-				action = random(4);
-				delayT = random(50);
-				this.delay=delayT;
-				this.mode=action;
-				break;
+		if(this.collided) {
+				this.mode = 4;
+				this.delay = 10  + random(10);
+		}
+		if(this.mode == 0) {
+			action = random(100);
+			delayT = random(50);
+			this.delay=delayT;
+			this.mode=action;
+		}
+		else if(this.mode > 0 && this.mode < 20) {
 			//rotate clockwise
-			case 1:
-				this.rotate(2);
-				this.delay--;
-				if(this.delay<=0)
-				{
-					this.mode=0;
-				}
-				break;
+			this.rotate(2);
+			this.delay--;
+			if(this.delay<=0)
+			{
+				this.mode=0;
+			}
+		}
+		else if(this.mode >= 20 && this.mode < 40) {
 			//rotate anti-clockwise
-			case 2:
-				this.rotate(-2);
-				this.delay--;
-				if(this.delay<=0)
-				{
-					this.mode=0;
-				}
-				break;
+			this.rotate(-2);
+			this.delay--;
+			if(this.delay<=0)
+			{
+				this.mode=0;
+			}
+		}
+		else if(this.mode >= 40 && this.mode < 80) {
 			//move foward
-			case 3:
-				this.move(this.movement);
-				this.delay--;
-				if(this.delay<=0)
-				{
-					this.mode=0;
-				}
-				break;
+			this.move(this.movement);
+			this.delay--;
+			if(this.delay<=0)
+			{
+				this.mode=0;
+			}
+		}
+		else {
 			//move backwards
-			case 4:
-				this.move(-this.movement);
-				this.delay--;
-				if(this.delay<=0)
-				{
-					this.mode=0;
-				}
-				break;
-			//case 5:
-			//	this.fire();
-			//	this.mode =0;
-			//	break;
+			this.move(-this.movement);
+			this.delay--;
+			if(this.delay<=0)
+			{
+				this.mode=0;
+			}
 		}
 		switch(this.turretMode)
 		{
@@ -154,7 +151,7 @@ EnemyTank = Class.create(Tank, {
 		this.shoot_count++;
 		if(this.shoot_count == this.shoot_delay) {
 			this.ai_shoot(this.world.playerTank.x, this.world.playerTank.y);
-			this.shoot_delay = 75 + random(75);
+			this.shoot_delay = 25 + random(25);
 			this.shoot_count = 0;
 		}
 	}

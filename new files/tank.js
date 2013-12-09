@@ -16,6 +16,7 @@ Tank = enchant.Class.create(enchant.Group,
 			this.hp=3;
 			
             this.world = world;
+            this.collided = false;
 
             this.x = x;
             this.y = y;
@@ -53,6 +54,7 @@ Tank = enchant.Class.create(enchant.Group,
                     var result = this.world.checkCollision(previousCollisionPointsX[i], previousCollisionPointsY[i], 
                                                             currentCollisionPointsX[i], currentCollisionPointsY[i]); 
 
+                    this.collided = result[0];
                     if(result[0]==true)
                     {    
                         this.x = this.x- (this.x+ aux[0]) + result[1];
@@ -80,6 +82,7 @@ Tank = enchant.Class.create(enchant.Group,
                    var aux = this.getPositionOfCollisionPoint(i);
                    var result = this.world.checkCollision(this.x+aux[0],this.y+aux[1], nextx + aux[0], nexty + aux[1]); 
 
+                   this.collided = result[0];
                    if(result[0]==true)
                    {    
                         nextx = nextx - (nextx + aux[0]) + result[1];
