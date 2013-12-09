@@ -63,6 +63,7 @@ window.onload = function() {
             this.bulletFired = false;
             this.currentlevel =0;
             this.backgroundColor='black';
+            this.newWorldAnimation = false;
 
             this.addEventListener('touchstart', function (e) {
                 if(this.bulletFired == false)
@@ -89,10 +90,23 @@ window.onload = function() {
         onenterframe: function() {  
             if(this.currentWorld.enemyTanks.length == 0)
             {
+                this.previousWorld = this.currentWorld;
                 this.currentlevel++;
-                this.removeChild(this.currentWorld);
                 this.currentWorld = new World(this.currentlevel);
+                this.currentWorld.x=768;
                 this.addChild(this.currentWorld);
+                this.newWorldAnimation=true;
+            }
+
+            if(this.newWorldAnimation == true)
+            {
+                this.currentWorld.x = this.currentWorld.x*0.9;
+                this.previousWorld.x = this.currentWorld.x - 768;
+                if(this.currentWorld==0)
+                {
+                    this.newWorldAnimation=false;
+                    this.removeChild(this.previousWorld);
+                }
             }
 
             this.bulletTimer++;

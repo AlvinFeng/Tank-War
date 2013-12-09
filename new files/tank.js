@@ -48,7 +48,6 @@ Tank = enchant.Class.create(enchant.Group,
                     currentCollisionPointsX[i] = aux[0]+this.x;
                     currentCollisionPointsY[i] = aux[1]+this.y;
 
-                    // put code here mf
                     var result = this.world.checkCollision(previousCollisionPointsX[i], previousCollisionPointsY[i], 
                                                             currentCollisionPointsX[i], currentCollisionPointsY[i]); 
 

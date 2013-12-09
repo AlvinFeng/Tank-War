@@ -76,6 +76,10 @@ EnemyTank = Class.create(Tank, {
 					this.mode=0;
 				}
 				break;
+			//case 5:
+			//	this.fire();
+			//	this.mode =0;
+			//	break;
 		}
 		switch(this.turretMode)
 		{
