@@ -150,7 +150,7 @@ window.onload = function() {
             {
                 this.currentWorld.x = this.currentWorld.x*0.95;
                 this.previousWorld.x = this.currentWorld.x - 768;
-                if(this.currentWorld==0)
+                if(this.currentWorld.x<=1)
                 {
                     this.newWorldAnimation=false;
                     this.removeChild(this.previousWorld);
