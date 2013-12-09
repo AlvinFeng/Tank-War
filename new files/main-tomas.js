@@ -40,6 +40,7 @@ window.onload = function() {
                     'sounds/select.wav',
                     'images/blacksquare.png',
 					'images/effect0.gif',
+					'images/tutorial.png',
                     'sounds/bgMusic2.mp3',
                     'sounds/explosion.wav',
                     'sounds/laserShot.wav'
@@ -47,7 +48,8 @@ window.onload = function() {
 
     game.onload = function() { 
         game.pushScene(new GameOverScene());
-        game.pushScene(new GameScene());    
+        game.pushScene(new GameScene()); 
+		game.pushScene(new Tutorial());
         game.pushScene(new TitleScene());     
     };
 
@@ -192,6 +194,19 @@ window.onload = function() {
             this.addChild(titleBG);
         }
     });
+	
+	Tutorial = Class.create(Scene,
+	{
+		initialize: function(){
+            Scene.apply(this);
+            var tut = new Sprite(768, 640);
+            tut.image = game.assets["images/tutorial.png"];
+            tut.ontouchend = function () {
+                    game.popScene();
+            };
+			this.addChild(tut);
+		},
+	});
 
     GameOverScene = Class.create(Scene, 
     {
