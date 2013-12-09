@@ -258,18 +258,6 @@ window.onload = function() {
             this.tank.y = 200;
             this.addChild(this.tank);
 
-            this.bUpgrade = new BulletUpgrade(150, 50, this, 1);
-            this.bUpgrade.scale(3, 3);
-            this.addChild(this.bUpgrade);
-
-            this.bUpgrade2 = new BulletUpgrade(350, 50, this, 2);
-            this.bUpgrade2.scale(3, 3);
-            this.addChild(this.bUpgrade2);
-
-            this.bUpgrade3 = new BulletUpgrade(550, 50, this, 3);
-            this.bUpgrade3.scale(3, 3);
-            this.addChild(this.bUpgrade3);
-
             var titleBG = new Sprite(189, 97);
             titleBG.image = game.assets["images/gameover.png"];
 

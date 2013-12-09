@@ -129,30 +129,30 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 
         if(this.owner != this.world.playerTank || this.age > 25) {
             if(this.within(this.world.playerTank, 20)) {
-                if(this.world.playerTank.hp>1)
-                {
-                    if (Bullet.upgradeLevel == 2) {
-                        this.world.playerTank.hp-=2;
-                    }
-                    else if (Bullet.upgradeLevel == 3) {
-                        this.world.playerTank.hp-=3;
-                    }
-                    else {
-                        this.world.playerTank.hp--;
-                    }
-                    
+                
+                if (Bullet.upgradeLevel == 2) {
+                    this.world.playerTank.hp-=2;
+                    game.hp -=2;
                 }
-				else
-				{
-					var blast=new Blast(this.world.playerTank.x, this.world.playerTank.y,world);
-					game.currentScene.addChild(blast);
-					game.assets['sounds/explosion.wav'].play();
-                    //Game over should be here
+                else if (Bullet.upgradeLevel == 3) {
+                    this.world.playerTank.hp-=3;
+                    game.hp -=3;
+                }
+                else {
+                    this.world.playerTank.hp--;
+                    game.hp --;
                 }
 
+                var blast=new Blast(this.world.playerTank.x, this.world.playerTank.y,world);
+                game.currentScene.addChild(blast);
+                game.assets['sounds/explosion.wav'].play();
+                
                 this.world.bullets.splice(this.world.bullets.indexOf(this), 1);
                 GameScene.bulletCount--;
                 this.remove();
+                if (this.world.playerTank.hp < 0) {
+                    game.popScene();
+                }
             }
         }
 
