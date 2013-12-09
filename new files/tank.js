@@ -115,10 +115,10 @@ Tank = enchant.Class.create(enchant.Group,
 
             this.fire = function(x,y)
             {
-                this.turret.rotation = Math.atan( (y-this.y)/(x-this.x)) *(180/Math.PI) + 90;
-                if(x<this.x)
+                this.turret.rotation = Math.atan( (y-(this.y + 18))/(x-(this.x + 21) )) *(180/Math.PI) + 90;
+                if(x<(this.x + 21))
                     this.turret.rotation+=180
-                var bullet = new Bullet(this.x, this.y, this.turret.rotation, 3, 4, this.world, "yellow");
+                var bullet = new Bullet(this.x + 21, this.y + 18, this.turret.rotation, 3, 4, this.world, "yellow");
                 this.world.addChild(bullet);
             }
         },
