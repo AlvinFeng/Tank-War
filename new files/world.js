@@ -600,6 +600,8 @@
             {
                var tilex = Math.floor(prevx/64); 
                var tiley = Math.floor(prevy/64);
+               var tilexReturn = tilex;
+               var tileyReturn = tiley;
 
                var aux;
 
@@ -618,6 +620,8 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex + 1;
+                        tileyReturn = tiley;
                    }
                    aux = this.checkCollisionWithTile(prevx, prevy, collisionX, collisionY, tilex - 1, tiley);
                    if(aux[0] == true)
@@ -626,6 +630,8 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex - 1;
+                        tileyReturn = tiley;
                    }
                    aux = this.checkCollisionWithTile(prevx, prevy, collisionX, collisionY, tilex, tiley + 1);
                    if(aux[0] == true)
@@ -634,6 +640,8 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex;
+                        tileyReturn = tiley + 1;
                    }
                    aux = this.checkCollisionWithTile(prevx, prevy, collisionX, collisionY, tilex, tiley - 1);
                    if(aux[0] == true)
@@ -642,6 +650,8 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex;
+                        tileyReturn = tiley - 1;
                    }
                    aux = this.checkCollisionWithTile(prevx, prevy, collisionX, collisionY, tilex + 1, tiley + 1);
                    if(aux[0] == true)
@@ -650,6 +660,8 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex + 1;
+                        tileyReturn = tiley + 1;
                    }
                    aux = this.checkCollisionWithTile(prevx, prevy, collisionX, collisionY, tilex + 1, tiley - 1);
                    if(aux[0] == true)
@@ -658,6 +670,8 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex + 1;
+                        tileyReturn = tiley - 1;
                    }
                    aux = this.checkCollisionWithTile(prevx, prevy, collisionX, collisionY, tilex - 1, tiley + 1);
                    if(aux[0] == true)
@@ -666,6 +680,8 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex - 1;
+                        tileyReturn = tiley + 1;
                    }
                    aux = this.checkCollisionWithTile(prevx, prevy, collisionX, collisionY, tilex - 1, tiley - 1);
                    if(aux[0] == true)
@@ -674,10 +690,12 @@
                         collisionX = aux[1];
                         collisionY = aux[2];
                         sideCollided = aux[3];
+                        tilexReturn = tilex - 1;
+                        tileyReturn = tiley - 1;
                    }
                }
 
-               return [collision, collisionX, collisionY, sideCollided];
+               return [collision, collisionX, collisionY, sideCollided, tilexReturn, tileyReturn];
 
             }
 
