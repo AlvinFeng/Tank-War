@@ -48,13 +48,9 @@ EnemyTank = Class.create(Tank, {
 
 			var hit = false;
 
-			console.log("Player @ " + playerx + "," + playery);
-			console.log("Starting at " + x_pos + "," + y_pos);
-			console.log("x_vel: " + x_vel + ", y_vel: " + y_vel);
 			while(!hit) {
 				x_pos -= x_vel;
 				y_pos -= y_vel;
-				console.log(x_pos + "," + y_pos)
 
 				if(this.ai_collision(playerx, playery, x_pos, y_pos, 500)) {
 					this.fire(playerx, playery, this);

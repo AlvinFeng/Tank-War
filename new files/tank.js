@@ -116,9 +116,6 @@ Tank = enchant.Class.create(enchant.Group,
 
             this.fire = function(x,y,owner)
             {
-                if(this.world.playerTank == owner) {
-                    console.log("PLAYER TANK");
-                }
                 this.turret.rotation = Math.atan( (y-(this.y + 18))/(x-(this.x + 21) )) *(180/Math.PI) + 90;
                 if(x<(this.x + 21))
                     this.turret.rotation+=180
