@@ -106,7 +106,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 });
 
 BulletUpgrade = enchant.Class.create(enchant.Sprite, {
-    initialize: function (x, y, scene, level) {
+    initialize: function (x, y, level, world) {
         enchant.Sprite.call(this, 24, 32);
         this.level = level;
         if (level == 1)
@@ -117,12 +117,12 @@ BulletUpgrade = enchant.Class.create(enchant.Sprite, {
             this.image = game.assets['images/yellowbullet3.png'];            
         this.x = x;
         this.y = y;
-        this.currentScene = scene;
+        this.world = world;
     },
     onenterframe : function () {
         if (!BulletUpgrade.TitleScreen){
-            if (this.within(this.currentScene.currentWorld.playerTank, 30)) {
-                this.currentScene.removeChild(this);
+            if (this.within(this.world.playerTank, 30)) {
+                this.world.removeChild(this);
                 if (this.level == 2)
                     Bullet.upgradeLevel = 2;
                 if (this.level == 3)

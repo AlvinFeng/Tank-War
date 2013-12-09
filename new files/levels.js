@@ -164,3 +164,18 @@ var levelsColors =
 	["cyan","red"],
 	["cyan","red"]
 ];
+
+//[x, y, upgradeLevel]
+var bulletUpgrades = 
+[
+	[],
+	[],
+	[300, 100, 2],
+	[],
+	[],
+	[200, 100, 3],
+	[],
+	[],
+	[],
+	[]
+]

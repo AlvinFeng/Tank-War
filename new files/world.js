@@ -43,7 +43,14 @@
                 this.addChild(this.enemyTanks[i]); // current World
             }
 
-            
+            var x = bulletUpgrades[this.levelNumber][0];
+            var y = bulletUpgrades[this.levelNumber][1];
+            var upgradeLevel = bulletUpgrades[this.levelNumber][2];
+            console.log(x);
+            console.log(y);
+            console.log(upgradeLevel);
+            this.bulletUpgrades = new BulletUpgrade(x,y,upgradeLevel, this);
+            this.addChild(this.bulletUpgrades);            
 
             this.isWall = function(i,j) 
             {

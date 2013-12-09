@@ -73,12 +73,6 @@ window.onload = function() {
                     this.bulletFired = true;
                 }
             });
-
-            this.bUpgrade = new BulletUpgrade(300, 100, this, 2);
-            this.addChild(this.bUpgrade);
-
-            var bUpgrade = new BulletUpgrade(600, 500, this, 3);
-            this.addChild(bUpgrade);
 			
 			this.speedup= new Powerup(100,100,0,this);
 			this.addChild(this.speedup);
@@ -119,7 +113,7 @@ window.onload = function() {
             };
             this.addChild(titleBG);
             //game.assets['sounds/bgMusic2.mp3'].play();
-            world = new World(0,'cyan','red', this);
+            world = new World(0);
             this.tank = new PlayerTank(100,100,'blue','blue',world);
             this.tank.rotateWholeTank(90);
             this.tank.scale(5, 5);
@@ -127,15 +121,15 @@ window.onload = function() {
             this.tank.y = 200;
             this.addChild(this.tank);
 
-            this.bUpgrade = new BulletUpgrade(150, 50, this, 1);
+            this.bUpgrade = new BulletUpgrade(150, 50, 1, world);
             this.bUpgrade.scale(3, 3);
             this.addChild(this.bUpgrade);
 
-            this.bUpgrade2 = new BulletUpgrade(350, 50, this, 2);
+            this.bUpgrade2 = new BulletUpgrade(350, 50, 2, world);
             this.bUpgrade2.scale(3, 3);
             this.addChild(this.bUpgrade2);
 
-            this.bUpgrade3 = new BulletUpgrade(550, 50, this, 3);
+            this.bUpgrade3 = new BulletUpgrade(550, 50, 3, world);
             this.bUpgrade3.scale(3, 3);
             this.addChild(this.bUpgrade3);
 			
