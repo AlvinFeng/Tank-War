@@ -88,6 +88,10 @@ window.onload = function() {
         onenterframe: function() {  
             if(this.currentWorld.enemyTanks.length == 0)
             {
+                if (this.currentWorld.levelNumber)
+                {
+                    game.popScene();
+                }
                 this.previousWorld = this.currentWorld;
                 this.currentlevel++;
                 this.currentWorld = new World(this.currentlevel);
