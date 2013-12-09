@@ -84,6 +84,7 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 				{
 					this.world.enemyTanks[i].hp--;
 					this.remove();
+                    GameScene.bulletCount--;
 				}
 				else
 				{
@@ -93,7 +94,8 @@ Bullet = enchant.Class.create(enchant.Sprite, {
 					this.world.enemyTanks[i].die();
 					this.world.enemyTanks[i].remove();
 					this.world.enemyTanks.splice(i, 1);
-					this.remove(); 
+					this.remove();
+                    GameScene.bulletCount--;
 				}
             }
 
@@ -102,7 +104,8 @@ Bullet = enchant.Class.create(enchant.Sprite, {
         this.move();
 
         if(this.num_bounces < 0) {
-            this.world.removeChild(this);
+            this.world.removeChild(this);            
+            GameScene.bulletCount--;
         }
     }
 });

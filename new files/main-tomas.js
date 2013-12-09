@@ -59,19 +59,17 @@ window.onload = function() {
             this.currentWorld = new World(0);
             this.addChild(this.currentWorld);
             this.currentWorld.removeDestructibleTile(4,0);
-            this.bulletTimer = 0;
-            this.bulletFired = false;
             this.currentlevel =0;
             this.backgroundColor='black';
-            this.newWorldAnimation = false;
+            this.newWorldAnimation = false;            
+            GameScene.bulletCount = 0;
 
             this.addEventListener('touchstart', function (e) {
-                if(this.bulletFired == false)
+                if(GameScene.bulletCount < 5)
                 {
                     this.currentWorld.playerTank.fire(e.x,e.y);                
                     game.assets["sounds/laserShot.wav"].play();
-                    this.bulletTimer = 0;
-                    this.bulletFired = true;
+                    GameScene.bulletCount++;
                 }
             });
 
@@ -125,13 +123,6 @@ window.onload = function() {
                     this.newWorldAnimation=false;
                     this.removeChild(this.previousWorld);
                 }
-            }
-
-            this.bulletTimer++;
-            if (this.bulletTimer / 50 == 1)
-            {
-                this.bulletFired = false;
-                this.bulletTimer = 0;
             }
         }
     });
