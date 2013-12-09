@@ -78,6 +78,15 @@ window.onload = function() {
 			this.speedup= new Powerup(100,100,0,this);
 			this.addChild(this.speedup);
 
+            this.textAnimation=true;
+            this.levelText = new Label();
+            this.levelText.color = "white"; 
+            this.levelText.font = "48px arial";
+            this.levelText.text = "Level " + (this.currentlevel+1);
+            this.levelText.x = 768;
+            this.levelText.y = 300;
+            this.addChild(this.levelText);
+
             Bullet.upgradeLevel = 1;
 
         },
@@ -90,11 +99,29 @@ window.onload = function() {
                 this.currentWorld.x=768;
                 this.addChild(this.currentWorld);
                 this.newWorldAnimation=true;
+                this.textAnimation=true;
+                this.levelText = new Label();
+                this.levelText.color = "white"; 
+                this.levelText.font = "48px arial";
+                this.levelText.text = "Level " + (this.currentlevel+1);
+                this.levelText.x = 768;
+                this.levelText.y = 300;
+                this.addChild(this.levelText);
+            }
+
+            if(this.textAnimation==true)
+            {   
+                this.levelText.x-=12;
+                if(this.levelText.x<=-200)
+                {
+                    this.removeChild(this.levelText);
+                    this.textAnimation=false;
+                }
             }
 
             if(this.newWorldAnimation == true)
             {
-                this.currentWorld.x = this.currentWorld.x*0.9;
+                this.currentWorld.x = this.currentWorld.x*0.95;
                 this.previousWorld.x = this.currentWorld.x - 768;
                 if(this.currentWorld==0)
                 {
