@@ -141,6 +141,7 @@ BulletUpgrade = enchant.Class.create(enchant.Sprite, {
         if (!BulletUpgrade.TitleScreen){
             if (this.within(this.currentScene.tankPlayer, 30)) {
                 this.currentScene.removeChild(this);
+                game.assets['sounds/upgrade.wav'].play();
                 if (this.level == 2)
                     Bullet.upgradeLevel = 2;
                 if (this.level == 3)

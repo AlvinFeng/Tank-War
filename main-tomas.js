@@ -42,7 +42,8 @@ window.onload = function() {
 					'images/effect0.gif',
                     'sounds/bgMusic2.mp3',
                     'sounds/explosion.wav',
-                    'sounds/laserShot.wav'
+                    'sounds/laserShot.wav',
+                    'sounds/upgrade.wav'
 					);
 
     game.onload = function() {
