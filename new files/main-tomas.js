@@ -212,8 +212,8 @@ window.onload = function() {
                 storyText.color = "00FF00";//"white";
                 storyText.textAlign = "center";
                 storyText.scale(2, 2);
-                storyText.x = 200;
-                storyText.y = 100;
+                storyText.x = 225;
+                storyText.y = 50;
                 game.currentScene.addChild(storyText);
                 TitleScene.StartGame = true;               
             };
