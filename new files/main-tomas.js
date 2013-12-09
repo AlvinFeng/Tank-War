@@ -74,9 +74,6 @@ window.onload = function() {
                     this.bulletFired = true;
                 }
             });
-			
-			this.speedup= new Powerup(100,100,0,this);
-			this.addChild(this.speedup);
 
             Bullet.upgradeLevel = 1;
 
