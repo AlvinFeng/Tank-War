@@ -55,9 +55,11 @@ Bullet = enchant.Class.create(enchant.Sprite, {
                 if(this.x_velocity<0)
                     this.rotation+=180
 
-                if (result[5] - 1 >= 0 && result[4] - 1 >= 0 && result[5] - 1 < 8 && result[4] - 1 < 10)
-                this.world.removeDestructibleTile(result[5] - 1, result[4] - 1);
-                
+                if (result[5] - 1 >= 0 && result[4] - 1 >= 0 && result[5] - 1 < 8 && result[4] - 1 < 10) {
+                    this.world.removeDestructibleTile(result[5] - 1, result[4] - 1);
+                    this.remove();
+                    GameScene.bulletCount--;
+                }
             }
             this.x=nextx;
             this.y=nexty;
