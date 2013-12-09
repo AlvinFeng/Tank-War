@@ -59,12 +59,18 @@ window.onload = function() {
             this.currentWorld = new World(0,'cyan','red');
             this.addChild(this.currentWorld);
             this.currentWorld.removeDestructibleTile(4,0);
-
+            this.bulletTimer = 0;
+            this.bulletFired = false;
             this.backgroundColor='black';
 
             this.addEventListener('touchstart', function (e) {
-                this.currentWorld.playerTank.fire(e.x,e.y);                
-                game.assets["sounds/laserShot.wav"].play();
+                if(this.bulletFired == false)
+                {
+                    this.currentWorld.playerTank.fire(e.x,e.y);                
+                    game.assets["sounds/laserShot.wav"].play();
+                    this.bulletTimer = 0;
+                    this.bulletFired = true;
+                }
             });
 
             this.bUpgrade = new BulletUpgrade(300, 100, this, 2);
@@ -75,6 +81,15 @@ window.onload = function() {
 
             Bullet.upgradeLevel = 1;
 
+        },
+        onenterframe: function()
+        {
+            this.bulletTimer++;
+            if (this.bulletTimer / 50 == 1)
+            {
+                this.bulletFired = false;
+                this.bulletTimer = 0;
+            }
         }
     });
 
