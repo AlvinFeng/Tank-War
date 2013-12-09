@@ -150,7 +150,7 @@ window.onload = function() {
             {
                 this.currentWorld.x = this.currentWorld.x*0.95;
                 this.previousWorld.x = this.currentWorld.x - 768;
-                if(this.currentWorld==0)
+                if(this.currentWorld.x<=1)
                 {
                     this.newWorldAnimation=false;
                     this.removeChild(this.previousWorld);
@@ -212,8 +212,8 @@ window.onload = function() {
                 storyText.color = "00FF00";//"white";
                 storyText.textAlign = "center";
                 storyText.scale(2, 2);
-                storyText.x = 200;
-                storyText.y = 100;
+                storyText.x = 225;
+                storyText.y = 50;
                 game.currentScene.addChild(storyText);
                 TitleScene.StartGame = true;               
             };
@@ -257,18 +257,6 @@ window.onload = function() {
             this.tank.x = 325;
             this.tank.y = 200;
             this.addChild(this.tank);
-
-            this.bUpgrade = new BulletUpgrade(150, 50, this, 1);
-            this.bUpgrade.scale(3, 3);
-            this.addChild(this.bUpgrade);
-
-            this.bUpgrade2 = new BulletUpgrade(350, 50, this, 2);
-            this.bUpgrade2.scale(3, 3);
-            this.addChild(this.bUpgrade2);
-
-            this.bUpgrade3 = new BulletUpgrade(550, 50, this, 3);
-            this.bUpgrade3.scale(3, 3);
-            this.addChild(this.bUpgrade3);
 
             var titleBG = new Sprite(189, 97);
             titleBG.image = game.assets["images/gameover.png"];
